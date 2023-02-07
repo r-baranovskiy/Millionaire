@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EB81A9D2992EB5700C8FBA1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB81A9C2992EB5700C8FBA1 /* UIColor.swift */; };
 		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
 		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
 		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EB81A9C2992EB5700C8FBA1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
 		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		80ADA9DA2991E586002D9D84 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7EB81A9C2992EB5700C8FBA1 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80ADA9EC2991E6D1002D9D84 /* ResultViewController.swift in Sources */,
+				7EB81A9D2992EB5700C8FBA1 /* UIColor.swift in Sources */,
 				80ADA9EF2991E6EB002D9D84 /* QuestionViewController.swift in Sources */,
 				80ADA9E92991E6B6002D9D84 /* ChartViewController.swift in Sources */,
 				80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */,
