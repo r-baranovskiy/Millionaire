@@ -12,17 +12,13 @@ final class QuestionManager {
     private let lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
     private let mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
     private let hardQuestions = QuestionDataBase.shared.fetchRandomHardQuestions()
-
-    var currentQuestionIndex = 0
-    var currentNumberAnswer = 1
-    var currentTypeQuestion: QuestionType = .low
     
-    func testArrays() {
-        print(lowQuestions)
-        print(mediumQuestions)
-        print(hardQuestions)
-    }
-
+    private var currentQuestionIndex = 0
+    private var currentTypeQuestion: QuestionType = .low
+    
+    private var currentQuestion: Question?
+    
+    // Func to fetch new request for different levels
     func fetchNewQuestion() -> Question? {
         let totalForEach = totalQuestions / 3
         
@@ -33,30 +29,32 @@ final class QuestionManager {
         if lowQuestions.count < totalForEach || mediumQuestions.count < totalForEach || hardQuestions.count < totalForEach {
             return nil
         }
-
+        
         switch currentTypeQuestion {
         case .low:
             if currentQuestionIndex < totalForEach {
-                return lowQuestions[currentQuestionIndex]
+                currentQuestion = lowQuestions[currentQuestionIndex]
+                currentQuestionIndex += 1
             } else {
                 currentTypeQuestion = .medium
                 currentQuestionIndex = 0
+                currentQuestion = mediumQuestions[currentQuestionIndex]
+                currentQuestionIndex += 1
             }
-            currentQuestionIndex += 1
         case .medium:
             if currentQuestionIndex < totalForEach {
-                return mediumQuestions[currentQuestionIndex]
+                currentQuestion = mediumQuestions[currentQuestionIndex]
+                currentQuestionIndex += 1
             } else {
                 currentTypeQuestion = .hard
                 currentQuestionIndex = 0
+                currentQuestion = hardQuestions[currentQuestionIndex]
+                currentQuestionIndex += 1
             }
-            currentQuestionIndex += 1
         case .hard:
             if currentQuestionIndex < totalForEach {
-                return hardQuestions[currentQuestionIndex]
-            } else {
-                currentQuestionIndex = 0
-                return nil
+                currentQuestion = hardQuestions[currentQuestionIndex]
+                currentQuestionIndex += 1
             }
         }
         return nil
