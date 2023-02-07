@@ -1,8 +1,9 @@
 import Foundation
 
-struct QuestionBase {
+/// Question data base that containts all the questions in the project
+struct QuestionDataBase {
     
-    static let shared = QuestionBase()
+    static let shared = QuestionDataBase()
     
     private let lowQuestions: [Question] = [
         Question(

@@ -1,5 +1,6 @@
 import Foundation
 
+/// Data Manager to fetch any questions from QuestionDataBase
 final class QuestionManager {
     
     let totalQuestions: Int
@@ -8,9 +9,9 @@ final class QuestionManager {
         self.totalQuestions = totalQuestions
     }
     
-    private let lowQuestions = QuestionBase.shared.fetchRandomLowQuestions()
-    private let mediumQuestions = QuestionBase.shared.fetchRandomMediumQuestions()
-    private let hardQuestions = QuestionBase.shared.fetchRandomHardQuestions()
+    private let lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
+    private let mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
+    private let hardQuestions = QuestionDataBase.shared.fetchRandomHardQuestions()
 
     var currentQuestionIndex = 0
     var currentNumberAnswer = 1
