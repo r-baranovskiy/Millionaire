@@ -1,6 +1,6 @@
 import Foundation
 
-class QuestionManager {
+final class QuestionManager {
     
     let totalQuestions: Int
     
