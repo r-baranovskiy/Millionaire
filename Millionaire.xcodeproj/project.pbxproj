@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
+		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
+		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
 		802D4ADA2991F11C00911F7A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 802D4AD82991F11C00911F7A /* Poppins-Regular.ttf */; };
 		802D4ADB2991F11C00911F7A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 802D4AD92991F11C00911F7A /* Poppins-SemiBold.ttf */; };
 		80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA9C52991E557002D9D84 /* AppDelegate.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
+		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		802D4AD82991F11C00911F7A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		802D4AD92991F11C00911F7A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		80ADA9C22991E557002D9D84 /* Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +57,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8023DC112992AA04009E4A92 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8023DC122992AA1F009E4A92 /* QuestionModel.swift */,
+				8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */,
+				8023DC162992AB27009E4A92 /* QuestionManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		802D4AD62991F0F200911F7A /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +180,7 @@
 		80ADA9E02991E65C002D9D84 /* QuestionModule */ = {
 			isa = PBXGroup;
 			children = (
+				8023DC112992AA04009E4A92 /* Models */,
 				80ADA9ED2991E6DE002D9D84 /* Controllers */,
 			);
 			path = QuestionModule;
@@ -333,9 +350,12 @@
 				80ADA9EF2991E6EB002D9D84 /* QuestionViewController.swift in Sources */,
 				80ADA9E92991E6B6002D9D84 /* ChartViewController.swift in Sources */,
 				80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */,
+				8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */,
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
+				8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */,
 				80ADA9F52991E71D002D9D84 /* RulesViewController.swift in Sources */,
+				8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */,
 				80ADA9E62991E68F002D9D84 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
