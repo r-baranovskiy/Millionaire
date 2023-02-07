@@ -10,6 +10,7 @@ class CustomTextField: UITextField {
 
 	override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
 		return bounds.inset(by: padding)
+		//test
 	}
 
 	override func editingRect(forBounds bounds: CGRect) -> CGRect {
