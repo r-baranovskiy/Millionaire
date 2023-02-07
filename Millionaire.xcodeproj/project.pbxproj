@@ -24,6 +24,7 @@
 		80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA9F72991E738002D9D84 /* StartViewController.swift */; };
 		80ADA9FB2991E831002D9D84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 80ADA9FA2991E831002D9D84 /* README.md */; };
 		E2A270D82992DF9F0068A4A6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270D72992DF9F0068A4A6 /* UIColor.swift */; };
+		E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270DB2992E78A0068A4A6 /* UIstackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		80ADA9F72991E738002D9D84 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		80ADA9FA2991E831002D9D84 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E2A270D72992DF9F0068A4A6 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		E2A270DB2992E78A0068A4A6 /* UIstackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIstackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A270D72992DF9F0068A4A6 /* UIColor.swift */,
+				E2A270DB2992E78A0068A4A6 /* UIstackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				80ADA9EF2991E6EB002D9D84 /* QuestionViewController.swift in Sources */,
 				80ADA9E92991E6B6002D9D84 /* ChartViewController.swift in Sources */,
 				80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */,
+				E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */,
 				8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */,
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
