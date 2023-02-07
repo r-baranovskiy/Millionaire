@@ -2,13 +2,6 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
-    private let gradientlayer: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "backgroundBlue")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
     private let mainLogo: UIImageView = {
         let imageLogo = UIImageView()
         imageLogo.image = UIImage(named: "logoMedium")
@@ -48,8 +41,8 @@ class QuestionViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black, colorBottom: .bottomBackgroundColor() ?? .black)
         
-        setupBackground()
         setupView()
         setConstraints()
     }
@@ -100,12 +93,6 @@ extension QuestionViewController {
     }
     
 // MARK: - Set constraints
-    
-    private func setupBackground() {
-        view.addSubview(gradientlayer)
-        self.view.backgroundColor = .black
-        gradientlayer.frame = self.view.bounds
-    }
 
     private func setConstraints() {
         self.view.addSubview(mainLogo)
