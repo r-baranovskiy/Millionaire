@@ -37,6 +37,11 @@ extension UIColor {
     static func bottomBackgroundColor() -> UIColor? {
         UIColor(red: 14/255, green: 8/255, blue: 40/255, alpha: 1)
     }
+    
+    static func bottomColor() -> UIColor? {
+//        UIColor(red: 28/255, green: 15/255, blue: 70/255, alpha: 0.7)
+        UIColor(red: 42/255, green: 16/255, blue: 84/255, alpha: 0.7)
+    }
 }
 
 

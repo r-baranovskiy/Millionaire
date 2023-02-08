@@ -11,18 +11,36 @@ class QuestionViewController: UIViewController {
     }()
     
     private var hitButtonsStackView = UIStackView()
+    private var answerButtonStackView = UIStackView()
     
-    private var timerStackView = UIStackView()
-    private let timerImageView = UIImageView()
-    public let timerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "30"
-        label.font = .systemFont(ofSize: 30)
-        label.textColor = .white
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private let timerLabel = UILabel(text: "⏱️ 30",
+                                     font: .systemFont(ofSize: 28, weight: .semibold),
+                                     textAlignment: .center,
+                                     color: .white)
+    private lazy var questionNumberLabel = UILabel(text: "Вопрос 1",
+                                              font: .systemFont(ofSize: 28, weight: .semibold),
+                                              textAlignment: .center,
+                                              color: .white)
+    private lazy var summLabel = UILabel(text: "💵 500₽",
+                                              font: .systemFont(ofSize: 22, weight: .semibold),
+                                              textAlignment: .left,
+                                              color: .white)
+    private lazy var backgroundQuestion: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.backgroundColor = .bottomColor()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
+    private lazy var questionLabel = UILabel(text: "Здесь отображается вопрос",
+                                             font: .systemFont(ofSize: 16, weight: .regular),
+                                             textAlignment: .center,
+                                             color: .white)
+    private let aButton = CustomButton()
+    private let bButton = CustomButton()
+    private let cButton = CustomButton()
+    private let dButton = CustomButton()
+
     
     private func helpButton(name: String, action: Selector) -> UIButton {
         let button = UIButton()
@@ -41,7 +59,8 @@ class QuestionViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black, colorBottom: .bottomBackgroundColor() ?? .black)
+        view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black,
+                                   colorBottom: .bottomBackgroundColor() ?? .black)
         
         setupView()
         setConstraints()
@@ -60,9 +79,8 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func noticeButtonAction() {
-        print("Pfvtnrb")
+        print("Заметки")
     }
-    
 }
 
 
@@ -71,25 +89,20 @@ extension QuestionViewController {
 // MARK: - Setup Views
     
     private func setupView() {
-        timerImageView.image = UIImage(systemName: "clock.fill")
-        timerImageView.tintColor = .white
-        timerImageView.contentMode = .scaleAspectFit
-        timerImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        timerImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-
-        timerStackView = UIStackView(subviews: [timerImageView, timerLabel],
-                                     axis: .horizontal,
-                                     spacing: 2,
-                                     aligment: .center,
-                                     distribution: .fillProportionally)
         
-        hitButtonsStackView = UIStackView(subviews: [fiftyButton, hallHelpButton, timerStackView, callFriendsButton, noticeButton],
-                                          axis: .horizontal,
-                                          spacing: 15,
-                                          aligment: .center,
-                                          distribution: .fillProportionally)
-
+        hitButtonsStackView = UIStackView(
+            subviews: [fiftyButton, hallHelpButton, timerLabel, callFriendsButton, noticeButton],
+            axis: .horizontal,
+            spacing: 15,
+            aligment: .center,
+            distribution: .fillEqually
+        )
         
+        answerButtonStackView = UIStackView(subviews: [aButton, bButton, cButton, dButton],
+                                            axis: .vertical,
+                                            spacing: 10,
+                                            aligment: .fill,
+                                            distribution: .fillEqually)
     }
     
 // MARK: - Set constraints
@@ -97,6 +110,12 @@ extension QuestionViewController {
     private func setConstraints() {
         self.view.addSubview(mainLogo)
         self.view.addSubview(hitButtonsStackView)
+        self.view.addSubview(questionNumberLabel)
+        self.view.addSubview(summLabel)
+        self.view.addSubview(backgroundQuestion)
+        backgroundQuestion.addSubview(questionLabel)
+        self.view.addSubview(answerButtonStackView)
+
         
         NSLayoutConstraint.activate([
             mainLogo.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
@@ -104,12 +123,35 @@ extension QuestionViewController {
             mainLogo.widthAnchor.constraint(equalToConstant: 158),
             mainLogo.heightAnchor.constraint(equalToConstant: 158),
             
-            timerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             hitButtonsStackView.topAnchor.constraint(equalTo: mainLogo.bottomAnchor, constant: 25),
-            hitButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            hitButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            hitButtonsStackView.heightAnchor.constraint(equalToConstant: 46)
+            hitButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -6),
+            hitButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 6),
+            hitButtonsStackView.heightAnchor.constraint(equalToConstant: 46),
+            
+            questionNumberLabel.topAnchor.constraint(equalTo: hitButtonsStackView.bottomAnchor, constant: 16),
+            questionNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            questionNumberLabel.heightAnchor.constraint(equalToConstant: 42),
+            
+            summLabel.topAnchor.constraint(equalTo: hitButtonsStackView.bottomAnchor, constant: 16),
+            summLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            summLabel.heightAnchor.constraint(equalToConstant: 42),
+            
+            backgroundQuestion.topAnchor.constraint(equalTo: questionNumberLabel.bottomAnchor, constant: 15),
+            backgroundQuestion.heightAnchor.constraint(equalToConstant: 122),
+            backgroundQuestion.trailingAnchor.constraint(equalTo: hitButtonsStackView.trailingAnchor),
+            backgroundQuestion.leadingAnchor.constraint(equalTo: hitButtonsStackView.leadingAnchor),
+            
+            questionLabel.centerYAnchor.constraint(equalTo: backgroundQuestion.centerYAnchor),
+            questionLabel.centerXAnchor.constraint(equalTo: backgroundQuestion.centerXAnchor),
+            questionLabel.heightAnchor.constraint(equalToConstant: 102),
+            questionLabel.widthAnchor.constraint(equalToConstant: 305),
+            
+            answerButtonStackView.topAnchor.constraint(equalTo: backgroundQuestion.bottomAnchor, constant: 25),
+            answerButtonStackView.leadingAnchor.constraint(equalTo: backgroundQuestion.leadingAnchor),
+            answerButtonStackView.trailingAnchor.constraint(equalTo: backgroundQuestion.trailingAnchor),
+            answerButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35)
         ])
     }
 }
