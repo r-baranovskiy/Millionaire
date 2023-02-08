@@ -2,6 +2,10 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
+    private var currentNumberQuestion = 1
+    private var gameTimer = Timer()
+    private var durationTimer = 30
+    
     private let mainLogo: UIImageView = {
         let imageLogo = UIImageView()
         imageLogo.image = UIImage(named: "logoMedium")
@@ -17,7 +21,7 @@ class QuestionViewController: UIViewController {
                                      font: .systemFont(ofSize: 28, weight: .semibold),
                                      textAlignment: .center,
                                      color: .white)
-    private lazy var questionNumberLabel = UILabel(text: "Вопрос 1",
+    private lazy var questionNumberLabel = UILabel(text: "Вопрос \(currentNumberQuestion)",
                                               font: .systemFont(ofSize: 28, weight: .semibold),
                                               textAlignment: .center,
                                               color: .white)
@@ -56,7 +60,8 @@ class QuestionViewController: UIViewController {
     private lazy var callFriendsButton = helpButton(name: "helpIcon3", action: #selector(callFriendsButtonAction))
     private lazy var noticeButton = helpButton(name: "helpIcon4", action: #selector(noticeButtonAction))
     
- 
+// MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black,
@@ -71,9 +76,37 @@ class QuestionViewController: UIViewController {
         cButton.tag = 3
         dButton.tag = 4
         
+        startTimer()
         updateQuestion()
         setupView()
         setConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        durationTimer = 30
+    }
+    
+// MARK: - Timer
+    
+    private func startTimer() {
+        gameTimer = Timer.scheduledTimer(timeInterval: 1,
+                                         target: self,
+                                         selector: (#selector(updateTimer)),
+                                         userInfo: nil,
+                                         repeats: true)
+    }
+
+    @objc func updateTimer() {
+        durationTimer -= 1
+        timerLabel.text = "⏱️ \(durationTimer)"
+        if durationTimer == 0 {
+            gameTimer.invalidate()
+            timerLabel.text = ""
+            showAlertEndOfTime()
+        } else if durationTimer <= 10 {
+            timerLabel.textColor = .red
+        }
     }
     
     @objc private func answerDidTap(_ button: UIButton) {
@@ -116,6 +149,22 @@ class QuestionViewController: UIViewController {
     
     @objc func noticeButtonAction() {
         print("Заметки")
+    }
+    
+// MARK: - Alerts
+    
+    func showAlertEndOfTime() {
+        let alert = UIAlertController(
+            title: "ВРЕМЯ ВЫШЛО",
+            message: "Ваш выигрыш составил...",
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "ВЫЙТИ", style: .cancel, handler: { event in
+            if let navigator = self.navigationController {
+                navigator.popToRootViewController(animated: true)
+            }
+        }))
+        self.present(alert, animated: true)
     }
 }
 
