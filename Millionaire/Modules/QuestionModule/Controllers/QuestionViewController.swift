@@ -61,9 +61,45 @@ class QuestionViewController: UIViewController {
         super.viewDidLoad()
         view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black,
                                    colorBottom: .bottomBackgroundColor() ?? .black)
+        aButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        bButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        cButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        dButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
         
+        aButton.tag = 1
+        bButton.tag = 2
+        cButton.tag = 3
+        dButton.tag = 4
+        
+        updateQuestion()
         setupView()
         setConstraints()
+    }
+    
+    @objc private func answerDidTap(_ button: UIButton) {
+        if QuestionManager.shared.checkAnswer(buttonTag: button.tag) {
+            updateQuestion()
+        }
+    }
+    
+    private func updateQuestion() {
+        guard let currentQuestion = QuestionManager.shared.fetchNewQuestion() else {
+            return
+        }
+        
+        guard let titleAButton = currentQuestion.answers.aAnswer.values.first,
+              let titleBButton = currentQuestion.answers.bAnswer.values.first,
+              let titleCButton = currentQuestion.answers.cAnswer.values.first,
+              let titleDButton = currentQuestion.answers.dAnswer.values.first else {
+            return
+        }
+        
+        questionLabel.text = currentQuestion.question
+        
+        aButton.setTitle("A: \(titleAButton)" , for: .normal)
+        bButton.setTitle("B: \(titleBButton)" , for: .normal)
+        cButton.setTitle("C: \(titleCButton)" , for: .normal)
+        dButton.setTitle("D: \(titleDButton)", for: .normal)
     }
     
     @objc func fiftyButtonAction() {

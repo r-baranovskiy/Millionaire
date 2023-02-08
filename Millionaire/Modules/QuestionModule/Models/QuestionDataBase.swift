@@ -128,7 +128,7 @@ struct QuestionDataBase {
                 aAnswer: [false : "Дегустатор спиртных напитков"], bAnswer: [false : "Консультант"],
                 cAnswer: [true : "Продавец подержанной мебели"], dAnswer: [false : "Сварочник 4 разряда"])),
         Question(
-            question: "В каком городе расположен Букингемский ДВОРЕЦ?",
+            question: "В каком городе расположен Букингемский дворец?",
             answers: Answer(
                 aAnswer: [false : "В Букингеме"], bAnswer: [true : "В Лондоне"],
                 cAnswer: [false : "В Дрездене"], dAnswer: [false : "В Бишкеке"])),
