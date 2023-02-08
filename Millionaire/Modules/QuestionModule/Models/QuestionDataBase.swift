@@ -7,146 +7,151 @@ struct QuestionDataBase {
     
     private let lowQuestions: [Question] = [
         Question(
-            question: "LOW 1",
+            question: "Какая столица Португалии?",
             answers: Answer(
-                aAnswer: [false : "4"], bAnswer: [false : "5"],
-                cAnswer: [true : "1"], dAnswer: [false : "3"])),
+                aAnswer: [false : "Минск"], bAnswer: [false : "Рига"],
+                cAnswer: [true : "Лиссабон"], dAnswer: [false : "Сыктыквар"])),
         Question(
-            question: "LOW 2",
+            question: "Конец Первой мировой войны",
             answers: Answer(
-                aAnswer: [true : "2"], bAnswer: [false : "1"],
-                cAnswer: [false : "4"], dAnswer: [false : "3"])),
+                aAnswer: [true : "1918 г."], bAnswer: [false : "1917 г."],
+                cAnswer: [false : "1945 г."], dAnswer: [false : "Такой не было"])),
         Question(
-            question: "LOW 3",
+            question: "На каких ножках стояла избушка Бабы Яги?",
             answers: Answer(
-                aAnswer: [false : "4"], bAnswer: [false : "1"],
-                cAnswer: [false : "2"], dAnswer: [true : "3"])),
+                aAnswer: [false : "Свиных"], bAnswer: [false : "Металлических"],
+                cAnswer: [false : "Фундаментных"], dAnswer: [true : "Куриных"])),
         Question(
-            question: "LOW 4",
+            question: "Что получают выпускники после окончания обучения?",
             answers: Answer(
-                aAnswer: [false : "2"], bAnswer: [false : "3"],
-                cAnswer: [true : "4"], dAnswer: [false : "1"])),
+                aAnswer: [false : "Славу"], bAnswer: [false : "Деньги"],
+                cAnswer: [true : "Диплом"], dAnswer: [false : "Фингал"])),
         Question(
-            question: "LOW 5",
+            question: "Так называется самая большая планета Солнечной системы.",
             answers: Answer(
-                aAnswer: [false : "1"], bAnswer: [true : "5"],
-                cAnswer: [false : "2"], dAnswer: [false : "3"])),
+                aAnswer: [false : "Земля"], bAnswer: [true : "Юпитер"],
+                cAnswer: [false : "Нептун"], dAnswer: [false : "Марс"])),
         Question(
-            question: "LOW 6",
+            question: "С ним и будильник не нужен.",
             answers: Answer(
-                aAnswer: [false : "8"], bAnswer: [false : "7"],
-                cAnswer: [true : "6"], dAnswer: [false : "9"])),
+                aAnswer: [false : "С соседом"], bAnswer: [false : "С мужем"],
+                cAnswer: [true : "С петухом"], dAnswer: [false : "С сокамерником"])),
         Question(
-            question: "LOW 7",
+            question: "Как называется самая высокая трава?",
             answers: Answer(
-                aAnswer: [true : "7"], bAnswer: [false : "8"],
-                cAnswer: [false : "6"], dAnswer: [false : "9"])),
+                aAnswer: [true : "Бамбук"], bAnswer: [false : "Папоротник"],
+                cAnswer: [false : "Борщевик"], dAnswer: [false : "Камыш"])),
         Question(
-            question: "LOW 8",
+            question: "Куда заносят животных, которых исчезают?",
             answers: Answer(
-                aAnswer: [false : "9"], bAnswer: [false : "7"],
-                cAnswer: [false : "6"], dAnswer: [true : "8"])),
+                aAnswer: [false : "В блокнот"], bAnswer: [false : "В зоопарк"],
+                cAnswer: [false : "В музей"], dAnswer: [true : "В Красную книгу"])),
         Question(
-            question: "LOW 9",
+            question: "Гараж - для машин. А как называется помещение для самолетов?",
             answers: Answer(
-                aAnswer: [false : "8"], bAnswer: [false : "6"],
-                cAnswer: [true : "9"], dAnswer: [false : "7"])),
+                aAnswer: [false : "Сарай"], bAnswer: [false : "Парковка"],
+                cAnswer: [true : "Ангар"], dAnswer: [false : "Оставляют на улице"])),
+        Question(
+            question: "В какой стране находится самое высокое здание?",
+            answers: Answer(
+                aAnswer: [false : "В Южном Судане"], bAnswer: [true : "В Дубае"],
+                cAnswer: [false : "В Китае"], dAnswer: [false : "В США"])),
     ]
     
     private let mediumQuestions: [Question] = [
         Question(
-            question: "MEDIUM 1",
+            question: "Сколько вдохов делает человеческое тело ежедневно?",
             answers: Answer(
-                aAnswer: [false : "4"], bAnswer: [false : "5"],
-                cAnswer: [true : "1"], dAnswer: [false : "3"])),
+                aAnswer: [false : "Ни одного"], bAnswer: [true : "20.000"],
+                cAnswer: [false : "320.000"], dAnswer: [false : "1.800"])),
         Question(
-            question: "MEDIUM 2",
+            question: "В каком году Юрий Гагарин совершил свой полёт?",
             answers: Answer(
-                aAnswer: [true : "2"], bAnswer: [false : "1"],
-                cAnswer: [false : "4"], dAnswer: [false : "3"])),
+                aAnswer: [true : "1961"], bAnswer: [false : "1988"],
+                cAnswer: [false : "1986"], dAnswer: [false : "1972"])),
         Question(
-            question: "MEDIUM 3",
+            question: "Как называется спутник Земли?",
             answers: Answer(
-                aAnswer: [false : "4"], bAnswer: [false : "1"],
-                cAnswer: [false : "2"], dAnswer: [true : "3"])),
+                aAnswer: [false : "COVID19"], bAnswer: [false : "Солнце"],
+                cAnswer: [false : "Звезда"], dAnswer: [true : "Луна"])),
         Question(
-            question: "MEDIUM 4",
+            question: "В какое время года Земля бывает ближе к Солнцу?",
             answers: Answer(
-                aAnswer: [false : "2"], bAnswer: [false : "3"],
-                cAnswer: [true : "4"], dAnswer: [false : "1"])),
+                aAnswer: [false : "Осенью"], bAnswer: [false : "Летом"],
+                cAnswer: [true : "Зимой"], dAnswer: [false : "Весной"])),
         Question(
-            question: "MEDIUM 5",
+            question: "С помощью какой звезды находят стороны света?",
             answers: Answer(
-                aAnswer: [true : "1"], bAnswer: [true : "5"],
-                cAnswer: [false : "2"], dAnswer: [false : "3"])),
+                aAnswer: [true : "Полярная"], bAnswer: [false : "Большая медведица"],
+                cAnswer: [false : "Сириус"], dAnswer: [false : "Вега"])),
         Question(
-            question: "MEDIUM 6",
+            question: "Как часто проводятся летние Олимпийские игры?",
             answers: Answer(
-                aAnswer: [false : "8"], bAnswer: [false : "7"],
-                cAnswer: [true : "6"], dAnswer: [false : "9"])),
+                aAnswer: [false : "1 раз в 2 года"], bAnswer: [false : "2 раза в год"],
+                cAnswer: [true : "1 раз в 4 года"], dAnswer: [false : "Каждую неделю"])),
         Question(
-            question: "MEDIUM 7",
+            question: "Какая пустыня покрывает большую часть Северной Африки?",
             answers: Answer(
-                aAnswer: [true : "7"], bAnswer: [false : "8"],
-                cAnswer: [false : "6"], dAnswer: [false : "9"])),
+                aAnswer: [true : "Сахара"], bAnswer: [false : "Калахари"],
+                cAnswer: [false : "Чиуауа"], dAnswer: [false : "Карру"])),
         Question(
-            question: "MEDIUM 8",
+            question: "Какой треугольник имеет три неравные стороны",
             answers: Answer(
-                aAnswer: [false : "9"], bAnswer: [false : "7"],
-                cAnswer: [false : "6"], dAnswer: [true : "8"])),
+                aAnswer: [false : "Равносторонний"], bAnswer: [false : "Кривой"],
+                cAnswer: [false : "Любой"], dAnswer: [true : "Неавносторонний"])),
         Question(
-            question: "MEDIUM 9",
+            question: "Какой фрукт содержит калий и помогает понижать кровяное давление?",
             answers: Answer(
-                aAnswer: [false : "8"], bAnswer: [false : "6"],
-                cAnswer: [true : "9"], dAnswer: [false : "7"])),
+                aAnswer: [false : "Кокос"], bAnswer: [false : "Яблоко"],
+                cAnswer: [true : "Банан"], dAnswer: [false : "Свекла"])),
     ]
     
     private let hardQuestions: [Question] = [
         Question(
-            question: "HARD 1",
+            question: "Кто был премьер-министр Великобритании с 1841 по 1846 год?",
             answers: Answer(
-                aAnswer: [false : "4"], bAnswer: [false : "5"],
-                cAnswer: [true : "1"], dAnswer: [false : "3"])),
+                aAnswer: [true : "Роберт Пил"], bAnswer: [false : "Уинстон Черчилль"],
+                cAnswer: [false : "Принц Чарльз"], dAnswer: [false : "Джун Лоу"])),
         Question(
-            question: "HARD 2",
+            question: "Какой химический символ для серебра?",
             answers: Answer(
-                aAnswer: [true : "2"], bAnswer: [false : "1"],
-                cAnswer: [false : "4"], dAnswer: [false : "3"])),
+                aAnswer: [false : "Ds"], bAnswer: [false : "Si"],
+                cAnswer: [false : "S"], dAnswer: [true : "Ag"])),
         Question(
-            question: "HARD 3",
+            question: "Какая самая маленькая птица в мире?",
             answers: Answer(
-                aAnswer: [false : "4"], bAnswer: [false : "1"],
-                cAnswer: [false : "2"], dAnswer: [true : "3"])),
+                aAnswer: [false : "Бормотушка"], bAnswer: [true : "Пчела колибри"],
+                cAnswer: [false : "Бабочка"], dAnswer: [false : "Синица-ремез"])),
         Question(
-            question: "HARD 4",
+            question: "Что на визитной карточке Аль Капоне было указано, чем он занимается?",
             answers: Answer(
-                aAnswer: [false : "2"], bAnswer: [false : "3"],
-                cAnswer: [true : "4"], dAnswer: [false : "1"])),
+                aAnswer: [false : "Дегустатор спиртных напитков"], bAnswer: [false : "Консультант"],
+                cAnswer: [true : "Продавец подержанной мебели"], dAnswer: [false : "Сварочник 4 разряда"])),
         Question(
-            question: "HARD 5",
+            question: "В каком городе расположен Букингемский ДВОРЕЦ?",
             answers: Answer(
-                aAnswer: [true : "1"], bAnswer: [true : "5"],
-                cAnswer: [false : "2"], dAnswer: [false : "3"])),
+                aAnswer: [false : "В Букингеме"], bAnswer: [true : "В Лондоне"],
+                cAnswer: [false : "В Дрездене"], dAnswer: [false : "В Бишкеке"])),
         Question(
-            question: "HARD 6",
+            question: "Какая страна послала армаду, чтобы атаковать Англию в 1588 году?",
             answers: Answer(
-                aAnswer: [false : "8"], bAnswer: [false : "7"],
-                cAnswer: [true : "6"], dAnswer: [false : "9"])),
+                aAnswer: [false : "Япония"], bAnswer: [false : "Россия"],
+                cAnswer: [true : "Испания"], dAnswer: [false : "Германия"])),
         Question(
-            question: "HARD 7",
+            question: "Какой город расположен как в Азии, так и в Европе?",
             answers: Answer(
-                aAnswer: [true : "7"], bAnswer: [false : "8"],
-                cAnswer: [false : "6"], dAnswer: [false : "9"])),
+                aAnswer: [true : "Стамбул"], bAnswer: [false : "Вена"],
+                cAnswer: [false : "Будапешт"], dAnswer: [false : "Санкт-Петербург"])),
         Question(
-            question: "HARD 8",
+            question: "Что является третьим наиболее распространенным газом в атмосфере Земли?",
             answers: Answer(
-                aAnswer: [false : "9"], bAnswer: [false : "7"],
-                cAnswer: [false : "6"], dAnswer: [true : "8"])),
+                aAnswer: [false : "Азот"], bAnswer: [false : "Углекислый"],
+                cAnswer: [false : "Кислород"], dAnswer: [true : "Аргон"])),
         Question(
-            question: "HARD 9",
+            question: "Какое название самого высокого в мире водопада?",
             answers: Answer(
-                aAnswer: [false : "8"], bAnswer: [false : "6"],
-                cAnswer: [true : "9"], dAnswer: [false : "7"])),
+                aAnswer: [false : "Виктория"], bAnswer: [false : "Вернал"],
+                cAnswer: [true : "Анхель"], dAnswer: [false : "Ниагарский"])),
     ]
     
     func fetchRandomLowQuestions() -> [Question] {
@@ -160,5 +165,4 @@ struct QuestionDataBase {
     func fetchRandomHardQuestions() -> [Question] {
         hardQuestions.shuffled()
     }
-    
 }
