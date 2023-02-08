@@ -7,6 +7,7 @@ final class QuestionManager {
     private (set) var currentQuestion: Question?
     
     private let totalQuestions = 15
+    let countOfAnswersInQuestion = 4
     
     private let lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
     private let mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
@@ -14,11 +15,33 @@ final class QuestionManager {
     
     private var currentQuestionIndex = 0
     private var currentTypeQuestion: QuestionType = .low
-        
+    
     // Func to fetch new request for different levels
     func fetchNewQuestion() -> Question? {
         updateCurrentQuestion()
         return currentQuestion
+    }
+    
+    // Func to use 50 percent help
+    func useFiftyHelp(_ availableCount: Int) {
+        guard let currentQuestion = currentQuestion,
+              availableCount > 0 else {
+            return
+        }
+        var answers: [[Bool:String]] = []
+        
+        let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
+                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer].shuffled()
+        
+        for answer in currentAnswers {
+            if answer[true] != nil {
+                answers.append(answer)
+            } else {
+                while answers.count < countOfAnswersInQuestion / 2 {
+                    answers.append(answer)
+                }
+            }
+        }
     }
     
     // Func to check on the right answer
