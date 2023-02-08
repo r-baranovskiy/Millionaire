@@ -22,9 +22,23 @@ final class QuestionManager {
     }
     
     // Func to check on the right answer
-    func checkAnswer(with answer: [Bool: String]) -> Bool {
-
-        return false
+    func checkAnswer(buttonTag: Int) -> Bool {
+        switch buttonTag {
+        case 1:
+            print(currentQuestion?.answers.aAnswer[true] != nil ? true : false)
+            return currentQuestion?.answers.aAnswer[true] != nil ? true : false
+        case 2:
+            print(currentQuestion?.answers.bAnswer[true] != nil ? true : false)
+            return currentQuestion?.answers.bAnswer[true] != nil ? true : false
+        case 3:
+            print(currentQuestion?.answers.cAnswer[true] != nil ? true : false)
+            return currentQuestion?.answers.cAnswer[true] != nil ? true : false
+        case 4:
+            print(currentQuestion?.answers.dAnswer[true] != nil ? true : false)
+            return currentQuestion?.answers.dAnswer[true] != nil ? true : false
+        default:
+            return false
+        }
     }
     
     // Private func to generate random quesion

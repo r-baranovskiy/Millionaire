@@ -29,7 +29,7 @@ struct QuestionDataBase {
         Question(
             question: "LOW 5",
             answers: Answer(
-                aAnswer: [true : "1"], bAnswer: [true : "5"],
+                aAnswer: [false : "1"], bAnswer: [true : "5"],
                 cAnswer: [false : "2"], dAnswer: [false : "3"])),
         Question(
             question: "LOW 6",
