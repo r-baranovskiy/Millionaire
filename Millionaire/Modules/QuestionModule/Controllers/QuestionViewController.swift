@@ -1,10 +1,22 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-    
-    private var currentNumberQuestion = 1
-    private var gameTimer = Timer()
+
     private var durationTimer = 30
+    private var possibleError: Bool = true
+    private var isRepeatedAnswerAllowed: Bool = false
+    private var answeredSecondTime: Bool = false
+    private var currentTitleAnswerButton: String?
+    private var tagButton: Int?
+    private var currentNumberQuestion = 1
+    private var currentCostQuestion = 500
+    private let correctAnswer = QuestionManager.shared
+    
+    private var gameTimer = Timer()
+    private let aButton = CustomButton()
+    private let bButton = CustomButton()
+    private let cButton = CustomButton()
+    private let dButton = CustomButton()
     
     private let mainLogo: UIImageView = {
         let imageLogo = UIImageView()
@@ -25,7 +37,7 @@ class QuestionViewController: UIViewController {
                                               font: .systemFont(ofSize: 28, weight: .semibold),
                                               textAlignment: .center,
                                               color: .white)
-    private lazy var summLabel = UILabel(text: "💵 500₽",
+    private lazy var summLabel = UILabel(text: "💵 \(currentCostQuestion)₽",
                                               font: .systemFont(ofSize: 22, weight: .semibold),
                                               textAlignment: .left,
                                               color: .white)
@@ -40,12 +52,7 @@ class QuestionViewController: UIViewController {
                                              font: .systemFont(ofSize: 16, weight: .regular),
                                              textAlignment: .center,
                                              color: .white)
-    private let aButton = CustomButton()
-    private let bButton = CustomButton()
-    private let cButton = CustomButton()
-    private let dButton = CustomButton()
 
-    
     private func helpButton(name: String, action: Selector) -> UIButton {
         let button = UIButton()
         button.setImage(UIImage(named: name), for: .normal)
@@ -108,11 +115,94 @@ class QuestionViewController: UIViewController {
             timerLabel.textColor = .red
         }
     }
+ 
+//MARK: - Actions after answer did tap
     
-    @objc private func answerDidTap(_ button: UIButton) {
-        if QuestionManager.shared.checkAnswer(buttonTag: button.tag) {
-            updateQuestion()
+    @objc private func answerDidTap(_ button: CustomButton) {
+        button.shake()
+        button.backgroundColor = .white
+        button.setTitleColor(.black, for: .normal)
+        handleButtons()
+        gameTimer.invalidate()
+        tagButton = button.tag
+        currentTitleAnswerButton = button.currentTitle
+        
+        (fiftyButton.isEnabled, hallHelpButton.isEnabled, callFriendsButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
+        Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(checkAnswer), userInfo: nil, repeats: false)
+//        if correctAnswer.checkAnswer(buttonTag: button.tag) {
+//            updateQuestion()
+//        }
+    }
+    
+    @objc func checkAnswer() {
+        switch tagButton {
+        case 1:
+            if correctAnswer.checkAnswer(buttonTag: aButton.tag) {
+                aButton.backgroundColor = .green
+                updateNumberQuestion()
+                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+            } else {
+                aButton.backgroundColor = .red
+                if !answeredSecondTime && !possibleError{
+                    startTimer()
+                }
+                if possibleError || (!possibleError && answeredSecondTime){
+                    showAlertWrongAnswer()
+                }
+            }
+        case 2:
+            if correctAnswer.checkAnswer(buttonTag: bButton.tag) {
+                bButton.backgroundColor = .green
+                updateNumberQuestion()
+                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+            } else {
+                bButton.backgroundColor = .red
+                if !answeredSecondTime && !possibleError{
+                    startTimer()
+                }
+                if possibleError || (!possibleError && answeredSecondTime){
+                    showAlertWrongAnswer()
+                }
+            }
+        case 3:
+            if correctAnswer.checkAnswer(buttonTag: cButton.tag){
+                cButton.backgroundColor = .green
+                updateNumberQuestion()
+                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+            } else {
+                cButton.backgroundColor = .red
+                if !answeredSecondTime && !possibleError{
+                    startTimer()
+                }
+                if possibleError || (!possibleError && answeredSecondTime){
+                    showAlertWrongAnswer()
+                }
+            }
+        case 4:
+            if correctAnswer.checkAnswer(buttonTag: dButton.tag){
+                dButton.backgroundColor = .green
+                updateNumberQuestion()
+                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+            } else {
+                dButton.backgroundColor = .red
+                if !answeredSecondTime && !possibleError{
+                    startTimer()
+                }
+                if possibleError || (!possibleError && answeredSecondTime){
+                    showAlertWrongAnswer()
+                }
+            }
+        default:
+            print("Error")
         }
+
+    }
+    
+    private func updateNumberQuestion() {
+        print("Перенести функцию на кнопку Следующий вопрос ChartViewController")
+        currentNumberQuestion += 1
+        questionNumberLabel.text = "Вопрос \(currentNumberQuestion)"
+        // добавить обновление цены
     }
     
     private func updateQuestion() {
@@ -134,13 +224,46 @@ class QuestionViewController: UIViewController {
         cButton.setTitle("C: \(titleCButton)" , for: .normal)
         dButton.setTitle("D: \(titleDButton)", for: .normal)
     }
+        
+    private func handleButtons(){
+        if possibleError {
+            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
+        } else if isRepeatedAnswerAllowed {
+            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (true, true, true, true)
+            isRepeatedAnswerAllowed = false
+            answeredSecondTime = false
+        } else {
+            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
+            answeredSecondTime = true
+        }
+    }
+    
+    @objc func goToChartViewController() {
+        if let navigator = self.navigationController {
+            navigator.pushViewController(ChartViewController(), animated: true)
+        }
+    }
+
+// MARK: - Help Buttons action
     
     @objc func fiftyButtonAction() {
         print("Подсказка 50/50")
+        QuestionManager.shared.useFiftyHelp(1)
+        
     }
     
     @objc func hallHelpButtonAction() {
-        print("Помощь зала")
+            showInfoHelpHall()
+            hallHelpButton.setImage(UIImage(named: ""), for: .normal)
+    }
+    
+    func showInfoHelpHall() {
+        let alert = UIAlertController(title: "Результат опроса зала",
+                                      message: "Большинство зала за вариант...",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     @objc func callFriendsButtonAction() {
@@ -161,7 +284,21 @@ class QuestionViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "ВЫЙТИ", style: .cancel, handler: { event in
             if let navigator = self.navigationController {
-                navigator.popToRootViewController(animated: true)
+                navigator.pushViewController(ChartViewController(), animated: true)
+            }
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    func showAlertWrongAnswer() {
+        let alert = UIAlertController(
+            title: "НЕПРАВИЛЬНО",
+            message: "попробуем в другой раз",
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "ВЫЙТИ", style: .cancel, handler: { event in
+            if let navigator = self.navigationController {
+                navigator.pushViewController(ChartViewController(), animated: true)
             }
         }))
         self.present(alert, animated: true)
