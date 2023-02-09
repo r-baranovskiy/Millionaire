@@ -9,8 +9,8 @@ final class StartViewController: UIViewController {
     private let welcomeLabel = UILabel(text: "добро пожаловать в игру", font: UIFont.systemFont(ofSize: 22))
     private let whoWontLabel = UILabel(text: "", font: UIFont.systemFont(ofSize: 28, weight: .bold))
     
-    private let rulesButton = UIButton(text: "правила игры", borderWidth: 0, font: .systemFont(ofSize: 18))
-    private let startGameButton = UIButton(text: "играть", borderWidth: 2, font: .systemFont(ofSize: 22))
+    private let rulesButton = CustomButton()
+    private let startGameButton = CustomButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +20,35 @@ final class StartViewController: UIViewController {
         self.whoWontLabel.colorString(text: "КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ", coloredText: "МИЛЛИОНЕРОМ")
         
         rulesButton.addTarget(self, action: #selector(rulesButtonPressed), for: .touchUpInside)
+        startGameButton.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
 
+        settingsButtons()
         setConstraints()
     }
     
     @objc
     private func rulesButtonPressed() {
         let vc = RulesViewController()
-        present(vc, animated: false)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    private func startGameButtonPressed() {
+        let vc = NicknameViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func settingsButtons() {
+        rulesButton.setTitle("правила игры", for: .normal)
+        rulesButton.layer.cornerRadius = 10
+        
+        startGameButton.setTitle("играть", for: .normal)
+        startGameButton.layer.cornerRadius = 10
+        startGameButton.layer.borderWidth = 2
     }
 }
 
+// MARK: - StartViewControllerConstraints
 extension StartViewController {
     private func setConstraints() {
         self.view.addSubview(gradientlayer)
@@ -64,7 +82,7 @@ extension StartViewController {
             rulesButton.topAnchor.constraint(equalTo: whoWontLabel.bottomAnchor, constant: 30),
             rulesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 75),
             rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
-            rulesButton.heightAnchor.constraint(equalToConstant: 40),
+            rulesButton.heightAnchor.constraint(equalToConstant: 45),
             
             startGameButton.topAnchor.constraint(equalTo: rulesButton.bottomAnchor, constant: 10),
             startGameButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 75),
