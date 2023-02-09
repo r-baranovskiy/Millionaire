@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D551A852992B96D003697CA /* UILabelCust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D551A842992B96D003697CA /* UILabelCust.swift */; };
-		6D551A882992B9BB003697CA /* UIButtonCust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D551A872992B9BB003697CA /* UIButtonCust.swift */; };
-		6D551A8A2992B9DF003697CA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D551A892992B9DF003697CA /* UIColor.swift */; };
-		6D551A8C2992BD12003697CA /* UIImageViewCust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D551A8B2992BD12003697CA /* UIImageViewCust.swift */; };
+		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
+		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
+		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
 		802D4ADA2991F11C00911F7A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 802D4AD82991F11C00911F7A /* Poppins-Regular.ttf */; };
 		802D4ADB2991F11C00911F7A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 802D4AD92991F11C00911F7A /* Poppins-SemiBold.ttf */; };
 		80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA9C52991E557002D9D84 /* AppDelegate.swift */; };
@@ -24,13 +23,16 @@
 		80ADA9F52991E71D002D9D84 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA9F42991E71D002D9D84 /* RulesViewController.swift */; };
 		80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA9F72991E738002D9D84 /* StartViewController.swift */; };
 		80ADA9FB2991E831002D9D84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 80ADA9FA2991E831002D9D84 /* README.md */; };
+		E2A270D82992DF9F0068A4A6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270D72992DF9F0068A4A6 /* UIColor.swift */; };
+		E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270DB2992E78A0068A4A6 /* UIstackView.swift */; };
+		E2A270DE299306BD0068A4A6 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270DD299306BD0068A4A6 /* UIButton.swift */; };
+		E2A270E02993085E0068A4A6 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270DF2993085E0068A4A6 /* UILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6D551A842992B96D003697CA /* UILabelCust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelCust.swift; sourceTree = "<group>"; };
-		6D551A872992B9BB003697CA /* UIButtonCust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonCust.swift; sourceTree = "<group>"; };
-		6D551A892992B9DF003697CA /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		6D551A8B2992BD12003697CA /* UIImageViewCust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewCust.swift; sourceTree = "<group>"; };
+		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
+		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		802D4AD82991F11C00911F7A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		802D4AD92991F11C00911F7A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		80ADA9C22991E557002D9D84 /* Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +48,10 @@
 		80ADA9F42991E71D002D9D84 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		80ADA9F72991E738002D9D84 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		80ADA9FA2991E831002D9D84 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E2A270D72992DF9F0068A4A6 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		E2A270DB2992E78A0068A4A6 /* UIstackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIstackView.swift; sourceTree = "<group>"; };
+		E2A270DD299306BD0068A4A6 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		E2A270DF2993085E0068A4A6 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6D551A862992B97B003697CA /* UIKit */ = {
+		8023DC112992AA04009E4A92 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6D551A842992B96D003697CA /* UILabelCust.swift */,
-				6D551A872992B9BB003697CA /* UIButtonCust.swift */,
-				6D551A8B2992BD12003697CA /* UIImageViewCust.swift */,
-				6D551A892992B9DF003697CA /* UIColor.swift */,
+				8023DC122992AA1F009E4A92 /* QuestionModel.swift */,
+				8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */,
+				8023DC162992AB27009E4A92 /* QuestionManager.swift */,
 			);
-			path = UIKit;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		802D4AD62991F0F200911F7A /* Enums */ = {
@@ -129,7 +134,10 @@
 		80ADA9DA2991E586002D9D84 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6D551A862992B97B003697CA /* UIKit */,
+				E2A270D72992DF9F0068A4A6 /* UIColor.swift */,
+				E2A270DB2992E78A0068A4A6 /* UIstackView.swift */,
+				E2A270DD299306BD0068A4A6 /* UIButton.swift */,
+				E2A270DF2993085E0068A4A6 /* UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 		80ADA9E02991E65C002D9D84 /* QuestionModule */ = {
 			isa = PBXGroup;
 			children = (
+				8023DC112992AA04009E4A92 /* Models */,
 				80ADA9ED2991E6DE002D9D84 /* Controllers */,
 			);
 			path = QuestionModule;
@@ -350,16 +359,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				80ADA9EC2991E6D1002D9D84 /* ResultViewController.swift in Sources */,
+				E2A270D82992DF9F0068A4A6 /* UIColor.swift in Sources */,
 				80ADA9EF2991E6EB002D9D84 /* QuestionViewController.swift in Sources */,
 				80ADA9E92991E6B6002D9D84 /* ChartViewController.swift in Sources */,
 				80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */,
-				6D551A8C2992BD12003697CA /* UIImageViewCust.swift in Sources */,
-				6D551A852992B96D003697CA /* UILabelCust.swift in Sources */,
-				6D551A882992B9BB003697CA /* UIButtonCust.swift in Sources */,
+				E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */,
+				8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */,
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
-				6D551A8A2992B9DF003697CA /* UIColor.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
+				8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */,
+				E2A270E02993085E0068A4A6 /* UILabel.swift in Sources */,
 				80ADA9F52991E71D002D9D84 /* RulesViewController.swift in Sources */,
+				E2A270DE299306BD0068A4A6 /* UIButton.swift in Sources */,
+				8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */,
 				80ADA9E62991E68F002D9D84 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6QCC36TXK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Millionaire/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
@@ -529,6 +542,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6QCC36TXK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Millionaire/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
