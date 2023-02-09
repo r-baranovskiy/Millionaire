@@ -333,6 +333,8 @@ struct QuestionDataBase {
                 cAnswer: [false : "Дуоксирибонуклеиновая кислота"], dAnswer: [true : "Дезоксирибонуклеиновая кислота"])),
     ]
     
+    //Func
+    
     func fetchRandomLowQuestions() -> [Question] {
         lowQuestions.shuffled()
     }
@@ -344,4 +346,5 @@ struct QuestionDataBase {
     func fetchRandomHardQuestions() -> [Question] {
         hardQuestions.shuffled()
     }
+    
 }
