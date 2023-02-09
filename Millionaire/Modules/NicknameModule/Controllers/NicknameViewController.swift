@@ -38,13 +38,23 @@ class NicknameViewController: UIViewController {
 		let textField = CustomTextField()
 		textField.attributedPlaceholder = NSAttributedString(string:"введите свой никнейм", attributes:[NSAttributedString.Key.foregroundColor: UIColor(rgb: 0xDADADA)])
 		textField.font = UIFont(name: "Poppins-Regular", size: 14)
-//		textField.textColor = UIColor(rgb: 0xDADADA)
 		textField.layer.cornerRadius = 10
 		textField.layer.borderWidth = 1
 		textField.layer.borderColor = UIColor(rgb: 0x48485F).withAlphaComponent(0.1).cgColor
 		textField.backgroundColor = UIColor(rgb: 0x2D3142).withAlphaComponent(0.2)
 		textField.translatesAutoresizingMaskIntoConstraints = false
 		return textField
+	}()
+	
+	let buttonView: UIButton = {
+		let button = UIButton()
+		button.setBackgroundImage(UIImage(named: "buttonStartGame"), for: .normal)
+//		button.backgroundColor = .green
+		button.setTitle("начать игру", for: .normal)
+		
+		
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
 	}()
 	
 	override func viewDidLoad() {
@@ -56,12 +66,14 @@ class NicknameViewController: UIViewController {
 		view.addSubview(logoView)
 		view.addSubview(headerLabelView)
 		view.addSubview(textFieldView)
+		view.addSubview(buttonView)
 		
 		
 		// Добавление констрейнтов для блоков
 		logoViewConstraints()
 		headerLabelViewConstraints()
 		textFieldViewConstraints()
+		buttonViewConstraints()
 		super.viewDidLoad()
 		
 	}
@@ -98,6 +110,15 @@ class NicknameViewController: UIViewController {
 		textFieldView.topAnchor.constraint(equalTo: headerLabelView.bottomAnchor, constant: 30).isActive = true
 		textFieldView.heightAnchor.constraint(equalToConstant: 45).isActive = true
 	}
+	
+	func buttonViewConstraints() {
+		buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		buttonView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+		buttonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+		buttonView.topAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: 15).isActive = true
+		buttonView.heightAnchor.constraint(equalToConstant: 45).isActive = true
+	}
+	
 	
 }
 
