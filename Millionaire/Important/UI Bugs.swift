@@ -9,6 +9,20 @@ private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!
 
 */
 
+// MARK: - RegistrationModule
+
+/*
+ // Fix textField textColor 
+ 
+ */
+
+// MARK: - QuestionModule
+
+/*
+
+ 
+ */
+
 // MARK: - Extension UILabelST
 
 //Color for dark theme doesn't work (Fix)
