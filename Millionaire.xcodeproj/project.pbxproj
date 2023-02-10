@@ -24,6 +24,7 @@
 		80A57174299669A500B4573C /* sound-question-module-waiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80A5716F299669A500B4573C /* sound-question-module-waiting.mp3 */; };
 		80A57175299669A500B4573C /* sound-question-module-right-answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80A57170299669A500B4573C /* sound-question-module-right-answer.mp3 */; };
 		80A5717729966D0F00B4573C /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5717629966D0F00B4573C /* Help.swift */; };
+		80A5717B2996778B00B4573C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5717A2996778B00B4573C /* SoundManager.swift */; };
 		80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA9C52991E557002D9D84 /* AppDelegate.swift */; };
 		80ADA9CF2991E558002D9D84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80ADA9CE2991E558002D9D84 /* Assets.xcassets */; };
 		80ADA9D22991E558002D9D84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80ADA9D02991E558002D9D84 /* LaunchScreen.storyboard */; };
@@ -58,6 +59,7 @@
 		80A5716F299669A500B4573C /* sound-question-module-waiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-question-module-waiting.mp3"; sourceTree = "<group>"; };
 		80A57170299669A500B4573C /* sound-question-module-right-answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-question-module-right-answer.mp3"; sourceTree = "<group>"; };
 		80A5717629966D0F00B4573C /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		80A5717A2996778B00B4573C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		80ADA9C22991E557002D9D84 /* Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80ADA9C52991E557002D9D84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80ADA9CE2991E558002D9D84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -144,6 +146,14 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		80A571792996777300B4573C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				80A5717A2996778B00B4573C /* SoundManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		80ADA9B92991E557002D9D84 = {
 			isa = PBXGroup;
 			children = (
@@ -164,8 +174,9 @@
 		80ADA9C42991E557002D9D84 /* Millionaire */ = {
 			isa = PBXGroup;
 			children = (
-				80A571662996633100B4573C /* Important */,
 				80ADA9DC2991E5AC002D9D84 /* Application */,
+				80A571662996633100B4573C /* Important */,
+				80A571792996777300B4573C /* Services */,
 				80ADA9DB2991E5A5002D9D84 /* Modules */,
 				80ADA9F92991E776002D9D84 /* Views */,
 				80ADA9DA2991E586002D9D84 /* Extensions */,
@@ -429,6 +440,7 @@
 				80A571682996634100B4573C /* UI Bugs.swift in Sources */,
 				8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */,
 				80A5716A2996661700B4573C /* Tasks.swift in Sources */,
+				80A5717B2996778B00B4573C /* SoundManager.swift in Sources */,
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
 				6D551A9129953FD1003697CA /* UILabelST.swift in Sources */,
