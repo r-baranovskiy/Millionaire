@@ -103,6 +103,7 @@ class NicknameViewController: UIViewController {
 		headerLabelView.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 40).isActive = true
 	}
 	
+	//Текстфилд с вводом никнейма
 	func textFieldViewConstraints() {
 		textFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		textFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
@@ -110,7 +111,7 @@ class NicknameViewController: UIViewController {
 		textFieldView.topAnchor.constraint(equalTo: headerLabelView.bottomAnchor, constant: 30).isActive = true
 		textFieldView.heightAnchor.constraint(equalToConstant: 45).isActive = true
 	}
-	
+	// Кнопка начать игру
 	func buttonViewConstraints() {
 		buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		buttonView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
@@ -121,7 +122,7 @@ class NicknameViewController: UIViewController {
 	
 	
 }
-
+// Экстеншн для цвета
 extension UIColor {
    convenience init(red: Int, green: Int, blue: Int) {
 	   assert(red >= 0 && red <= 255, "Invalid red component")
@@ -139,3 +140,4 @@ extension UIColor {
 	   )
    }
 }
+
