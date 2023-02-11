@@ -3,9 +3,10 @@ import UIKit
 
 class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
+    private let scoreManager = ScoreManager()
+    
 	let gameResults = ["Game 1", "Game 2", "Game 3", "Game 4", "Game 5"]
-	
-	
+		
 	let logoView: UIImageView = {
 		let logoImage = UIImageView()
 		logoImage.image = UIImage(named: "logoLarge")
@@ -97,7 +98,8 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: ScoreTableViewCell.identifier, for: indexPath) as? ScoreTableViewCell else { return UITableViewCell()
 		}
-		cell.cellConfigure(game: "Игра \(indexPath.row+1)", result: "1000₽")
+        let score = scoreManager.getAllSaves()[indexPath.row]
+		cell.cellConfigure(with: score)
 		cell.backgroundColor = .clear
 		cell.textLabel?.textColor = .white
 		cell.isUserInteractionEnabled = false
@@ -106,7 +108,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		gameResults.count
+        return scoreManager.getAllSaves().count
 	}
 
 }

@@ -17,6 +17,8 @@ class CustomTextField: UITextField {
 	}
 }
 class NicknameViewController: UIViewController {
+    
+    var scoreManager = ScoreManager()
 	
 	let logoView: UIImageView = {
 		let logoImage = UIImageView()
@@ -60,6 +62,8 @@ class NicknameViewController: UIViewController {
 	override func viewDidLoad() {
 		view.backgroundColor = .black
 		setBackground()
+        
+        buttonView.addTarget(self, action: #selector(buttonViewPressed), for: .touchUpInside)
 		
 		
 		//Добавление блоков с элементами
@@ -77,6 +81,17 @@ class NicknameViewController: UIViewController {
 		super.viewDidLoad()
 		
 	}
+    
+    @objc
+    private func buttonViewPressed() {
+        let userName = textFieldView.text
+        let score = ScoreModel(name: userName!, sum: QuestionManager.shared.currentQuestionCost)
+        
+        scoreManager.create(score: score)
+        
+        let vc = ScoreViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 	
 	func setBackground() {
 		let background = UIImage(named: "backgroundBlue")
