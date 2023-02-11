@@ -28,17 +28,27 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 		table.translatesAutoresizingMaskIntoConstraints = false
 		return table
 	}()
-	
-	
-	
-	override func viewDidLoad() {
+    
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Назад", for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = .clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    override func viewDidLoad() {
 		view.backgroundColor = .black
 		setBackground()
+        
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
 		
 		//Добавление блоков с элементами
 		view.addSubview(logoView)
 		view.addSubview(headerLabelView)
 		view.addSubview(tableView)
+        view.addSubview(backButton)
 		tableView.register(ScoreTableViewCell.self, forCellReuseIdentifier: ScoreTableViewCell.identifier)
 		tableView.dataSource = self
 		tableView.delegate = self
@@ -46,17 +56,20 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 		tableView.separatorStyle = .none
 		tableView.separatorColor = .clear
 		
-		
-		
 		// Добавление констрейнтов для блоков
 		logoViewConstraints()
 		headerLabelViewConstraints()
 		tableViewConstraints()
-		
+        backButtonConstraints()
 		
 		super.viewDidLoad()
-		
 	}
+    
+    @objc
+    private func backButtonPressed() {
+        let vc = StartViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
 	
 	func setBackground() {
 		let background = UIImage(named: "backgroundBlue")
@@ -88,8 +101,15 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 		tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
 		tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
 		tableView.topAnchor.constraint(equalTo: headerLabelView.bottomAnchor, constant: 30).isActive = true
-		tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+		tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70).isActive = true
 	}
+    
+    func backButtonConstraints(){
+        backButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 5).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+    }
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
@@ -110,6 +130,5 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreManager.getAllSaves().count
 	}
-
 }
 
