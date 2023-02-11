@@ -86,12 +86,6 @@ class ChartViewController: UIViewController {
         questionAndRewardStack = UIStackView(subviews: [view15, view14, view13, view12, view11, view10, view9, view8, view7, view6, view5, view4, view3, view2, view1], axis: .vertical, spacing: 7, aligment: .fill, distribution: .fillEqually)
             self.view.addSubview(questionAndRewardStack)
         
-        goAhead.titleLabel?.textColor = .white
-        goAhead.backgroundColor = .gray
-       
-        goAhead.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         self.view.addSubview(goAhead)
         self.view.addSubview(takeMoney)
     }
@@ -170,6 +164,12 @@ class ChartViewController: UIViewController {
             goAhead.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             goAhead.widthAnchor.constraint(equalToConstant: 100),
             goAhead.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
+            
+            takeMoney.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            takeMoney.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            takeMoney.widthAnchor.constraint(equalToConstant: 150),
+            takeMoney.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
+            
         ])
     }
     
