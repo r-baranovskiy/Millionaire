@@ -241,9 +241,9 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func goToChartViewController() {
-        if let navigator = self.navigationController {
-            navigator.pushViewController(ChartViewController(), animated: true)
-        }
+        let chartVC = ChartViewController()
+        chartVC.numberOfQuestion = questionManager.currentNumberQuestion
+        navigationController?.pushViewController(chartVC, animated: true)
     }
 
 // MARK: - Help Buttons action
