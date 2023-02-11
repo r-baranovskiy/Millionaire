@@ -3,7 +3,7 @@ import UIKit
 
 final class LoseViewController: UIViewController {
     
-    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFit)
+    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
     private let mainLogo = UIImageView(image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
     
     private let gameStopped = UILabel(text: "ИГРА ОКОНЧЕНА", font: .systemFont(ofSize: 28))

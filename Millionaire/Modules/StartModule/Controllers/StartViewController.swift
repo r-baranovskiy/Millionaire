@@ -3,7 +3,7 @@ import UIKit
 
 final class StartViewController: UIViewController {
     
-    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFit)
+    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
     private let mainLogo = UIImageView(image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
     
     private let welcomeLabel = UILabel(text: "добро пожаловать в игру", font: UIFont.systemFont(ofSize: 22))
