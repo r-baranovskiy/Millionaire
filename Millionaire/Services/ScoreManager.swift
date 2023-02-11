@@ -51,6 +51,11 @@ final class ScoreManager {
         allSaves[index] = score
     }
     
+    func delete(score: ScoreModel) {
+        if let index = allSaves.firstIndex(where: { $0.id == score.id }) {
+            allSaves.remove(at: index)
+        }
+    }
 }
 //final class ScoreManager {
 //
