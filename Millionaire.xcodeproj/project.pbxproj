@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E1DFCEA299833AE007EBFA1 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */; };
 		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
 		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
 		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
 		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -86,8 +88,6 @@
 		6D551A8D29953F76003697CA /* StartModule */ = {
 			isa = PBXGroup;
 			children = (
-				6D551A9029953FD1003697CA /* UILabelST.swift */,
-				6D551A92299540FC003697CA /* UIImageViewST.swift */,
 			);
 			path = StartModule;
 			sourceTree = "<group>";
@@ -287,8 +287,8 @@
 		80ADA9E42991E683002D9D84 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */,
 				80ADA9E52991E68F002D9D84 /* ScoreViewController.swift */,
-				7EB81AA02998085F00C8FBA1 /* ScoreTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -304,8 +304,6 @@
 		80ADA9EA2991E6C4002D9D84 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6D491E502995839400C3CDE1 /* LoseViewController.swift */,
-				6D491E52299583AB00C3CDE1 /* WinViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -430,7 +428,6 @@
 				E2A270D82992DF9F0068A4A6 /* UIColor.swift in Sources */,
 				80ADA9EF2991E6EB002D9D84 /* QuestionViewController.swift in Sources */,
 				80ADA9E92991E6B6002D9D84 /* ChartViewController.swift in Sources */,
-				6D551A93299540FC003697CA /* UIImageViewST.swift in Sources */,
 				80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */,
 				E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */,
 				80A571682996634100B4573C /* UI Bugs.swift in Sources */,
@@ -438,14 +435,11 @@
 				80A5716A2996661700B4573C /* Tasks.swift in Sources */,
 				80A5717B2996778B00B4573C /* SoundManager.swift in Sources */,
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
+				7E1DFCEA299833AE007EBFA1 /* ScoreTableViewCell.swift in Sources */,
 				80F5B5CF2997C4FB00C0F86C /* ScoreManager.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
-				6D551A9129953FD1003697CA /* UILabelST.swift in Sources */,
-				6D491E512995839400C3CDE1 /* LoseViewController.swift in Sources */,
-				6D491E53299583AB00C3CDE1 /* WinViewController.swift in Sources */,
 				80A5717729966D0F00B4573C /* Help.swift in Sources */,
 				8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */,
-				7EB81AA12998085F00C8FBA1 /* ScoreTableViewCell.swift in Sources */,
 				E2A270E02993085E0068A4A6 /* UILabel.swift in Sources */,
 				80ADA9F52991E71D002D9D84 /* RulesViewController.swift in Sources */,
 				E2A270DE299306BD0068A4A6 /* UIButton.swift in Sources */,
