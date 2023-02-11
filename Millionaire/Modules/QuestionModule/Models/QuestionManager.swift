@@ -4,10 +4,22 @@ import Foundation
 final class QuestionManager {
     
     static let shared = QuestionManager()
+    
+    enum HelpType {
+        case fifty
+        case hall
+        case callToFriend
+    }
+    
     private (set) var currentQuestion: Question?
     
+    //States for help buttons
+    private (set) var isFiftyEnabled: Bool = false
+    private (set) var isHallEnabled: Bool = false
+    private (set) var isCallToFriendEnebled: Bool = false
+    
     private let totalQuestions = 15
-    let countOfAnswersInQuestion = 4
+    private let countOfAnswersInQuestion = 4
     
     private let lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
     private let mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
@@ -16,16 +28,73 @@ final class QuestionManager {
     private var currentQuestionIndex = 0
     private var currentTypeQuestion: QuestionType = .low
     
-    // Func to fetch new request for different levels
-    func fetchNewQuestion() -> Question? {
-        updateCurrentQuestion()
-        return currentQuestion
+    // MARK: - Help
+    
+    func userHelp(typeOfHelp: HelpType) {
+        switch typeOfHelp {
+        case .fifty:
+            useFiftyHelp()
+        case .hall:
+            useHallHelp()
+        case .callToFriend:
+            useCallToFriend()
+        }
+    }
+    
+    // Func to use callToFriend help
+    private func useCallToFriend() {
+        guard let currentQuestion = currentQuestion,
+        isCallToFriendEnebled else {
+            return
+        }
+        
+        var answers: [[Bool:String]] = []
+        
+        let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
+                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer].shuffled()
+        
+        for answer in currentAnswers {
+            if answer[true] != nil {
+                answers.append(answer)
+            } else {
+                while answers.count < countOfAnswersInQuestion / 2 {
+                    answers.append(answer)
+                }
+            }
+        }
+        
+        isCallToFriendEnebled = false
+    }
+    
+    // Func to use hall help
+    private func useHallHelp() {
+        guard let currentQuestion = currentQuestion,
+        isHallEnabled else {
+            return
+        }
+        
+        var answers: [[Bool:String]] = []
+        
+        let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
+                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer].shuffled()
+        
+        for answer in currentAnswers {
+            if answer[true] != nil {
+                answers.append(answer)
+            } else {
+                while answers.count < countOfAnswersInQuestion / 2 {
+                    answers.append(answer)
+                }
+            }
+        }
+        
+        isHallEnabled = false
     }
     
     // Func to use 50 percent help
-    func useFiftyHelp(_ availableCount: Int) {
+    private func useFiftyHelp() {
         guard let currentQuestion = currentQuestion,
-              availableCount > 0 else {
+        isFiftyEnabled else {
             return
         }
         var answers: [[Bool:String]] = []
@@ -42,6 +111,15 @@ final class QuestionManager {
                 }
             }
         }
+        isFiftyEnabled = false
+    }
+    
+    // MARK: - Questions
+    
+    // Func to fetch new request for different levels
+    func fetchNewQuestion() -> Question? {
+        updateCurrentQuestion()
+        return currentQuestion
     }
     
     // Func to check on the right answer
