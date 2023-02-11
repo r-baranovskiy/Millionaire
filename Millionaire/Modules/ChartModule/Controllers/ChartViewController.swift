@@ -10,7 +10,6 @@ class ChartViewController: UIViewController {
         return imageLogo
     }()
     
-    
     lazy var takeMoney = naviButton(title: "Забрать деньги", action: #selector(takeMoneyAction))
     lazy var goAhead = naviButton(title: "Далее", action: #selector(goAheadAction))
     
@@ -40,6 +39,9 @@ class ChartViewController: UIViewController {
     lazy var view2 = setUpQuestionView(titleQuestion: "Вопрос 2", sumOfQuestion: "200 руб.")
     lazy var view1 = setUpQuestionView(titleQuestion: "Вопрос 1", sumOfQuestion: "100 руб.")
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black, colorBottom: .bottomBackgroundColor() ?? .black)
@@ -47,58 +49,24 @@ class ChartViewController: UIViewController {
         setupConstraints()
     }
     
-    
     private func setUpQuestionView(titleQuestion: String, sumOfQuestion: String) -> UIView {
-            var questionView = UIView()
+            let questionView = UIView()
             questionView.translatesAutoresizingMaskIntoConstraints = false
-            
-//            var leftView = UIView()
-//                leftView.backgroundColor = .bottomColor()
-//                leftView.translatesAutoresizingMaskIntoConstraints = false
-//            var rightView = UIView()
-//                rightView.backgroundColor = .bottomColor()
-//                rightView.translatesAutoresizingMaskIntoConstraints = false
                 
-            var questionLabel = UILabel(text: titleQuestion, font: .systemFont(ofSize: 20, weight: .regular), textAlignment: .left, color: .white)
-            var rewardLabel = UILabel(text: sumOfQuestion, font: .systemFont(ofSize: 20, weight: .regular), textAlignment: .right, color: .white)
-        var stack = UIStackView(subviews: [questionLabel, rewardLabel], axis: .horizontal, spacing: 0, aligment: .fill, distribution: .fillEqually)
-//            leftView.addSubview(questionLabel)
-//            rightView.addSubview(rewardLabel)
-            
-//        questionView.addSubview(leftView)
-//        questionView.addSubview(rightView)
+            let questionLabel = UILabel(text: titleQuestion, font: .systemFont(ofSize: 20, weight: .regular), textAlignment: .left, color: .white)
+            let rewardLabel = UILabel(text: sumOfQuestion, font: .systemFont(ofSize: 20, weight: .regular), textAlignment: .right, color: .white)
+            let stack = UIStackView(subviews: [questionLabel, rewardLabel], axis: .horizontal, spacing: 0, aligment: .fill, distribution: .fillEqually)
         
         questionView.addSubview(stack)
         questionView.backgroundColor = .bottomColor()
         questionView.layer.cornerRadius = 20
-        
             
             NSLayoutConstraint.activate([
-                
-                questionLabel.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-                questionLabel.centerYAnchor.constraint(equalTo: stack.centerYAnchor),
-//                leftView.widthAnchor.constraint(equalTo: questionView.widthAnchor, multiplier: 0.5),
-//                leftView.leadingAnchor.constraint(equalTo: questionView.leadingAnchor),
-//                leftView.topAnchor.constraint(equalTo: questionView.topAnchor),
-//                leftView.bottomAnchor.constraint(equalTo: questionView.bottomAnchor),
-//
-//                rightView.widthAnchor.constraint(equalTo: questionView.widthAnchor, multiplier: 0.5),
-//                rightView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor),
-//                rightView.topAnchor.constraint(equalTo: questionView.topAnchor),
-//                rightView.bottomAnchor.constraint(equalTo: questionView.bottomAnchor),
-//
-//                questionLabel.topAnchor.constraint(equalTo: leftView.topAnchor),
-//                questionLabel.bottomAnchor.constraint(equalTo: leftView.bottomAnchor),
-//                questionLabel.leadingAnchor.constraint(equalTo: leftView.leadingAnchor, constant: 10),
-//                questionLabel.trailingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: -10),
-//
-//                rewardLabel.topAnchor.constraint(equalTo: rightView.topAnchor),
-//                rewardLabel.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
-//                rewardLabel.leadingAnchor.constraint(equalTo: rightView.leadingAnchor, constant: 10),
-//                rewardLabel.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -10)
+                stack.centerYAnchor.constraint(equalTo: questionView.centerYAnchor),
+                stack.leadingAnchor.constraint(equalTo: questionView.leadingAnchor, constant: 20),
+                stack.trailingAnchor.constraint(equalTo: questionView.trailingAnchor, constant: -20)
             ])
         
-
             return questionView
         }
     
@@ -115,16 +83,20 @@ class ChartViewController: UIViewController {
         helpStack = UIStackView(subviews: [helpStackOne, helpStackTwo], axis: .horizontal, spacing: 100, aligment: .fill, distribution: .fillEqually)
         self.view.addSubview(helpStack)
         
-
-        
         questionAndRewardStack = UIStackView(subviews: [view15, view14, view13, view12, view11, view10, view9, view8, view7, view6, view5, view4, view3, view2, view1], axis: .vertical, spacing: 7, aligment: .fill, distribution: .fillEqually)
             self.view.addSubview(questionAndRewardStack)
         
+        goAhead.titleLabel?.textColor = .white
+        goAhead.backgroundColor = .gray
+       
+        goAhead.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         self.view.addSubview(goAhead)
         self.view.addSubview(takeMoney)
-        
-   
     }
+    
+    
 
     func helpButton(name: String, action: Selector) -> UIButton {
         let button = UIButton()
@@ -137,8 +109,9 @@ class ChartViewController: UIViewController {
     
     func naviButton(title: String, action: Selector) -> UIButton {
         let button = UIButton()
-        button.titleLabel?.text = title
-        button.titleLabel?.textColor = .white
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.textAlignment = .center
         button.clipsToBounds = true
         button.addTarget(self, action: action, for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -169,6 +142,10 @@ class ChartViewController: UIViewController {
         print("Далее")
     }
     
+    
+    
+
+    
 // MARK: - Сonstraints
     
     func setupConstraints() {
@@ -189,9 +166,10 @@ class ChartViewController: UIViewController {
             questionAndRewardStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             questionAndRewardStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
             
-            goAhead.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            goAhead.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-//            goAhead.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 30)
+            goAhead.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            goAhead.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            goAhead.widthAnchor.constraint(equalToConstant: 100),
+            goAhead.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
         ])
     }
     
