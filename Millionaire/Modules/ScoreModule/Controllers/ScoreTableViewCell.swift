@@ -80,7 +80,4 @@ class ScoreTableViewCell: UITableViewCell {
 			super.frame = frame
 		}
 	  }
-	
-	
-
 }

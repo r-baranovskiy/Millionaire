@@ -42,6 +42,7 @@ class NicknameViewController: UIViewController {
 		textField.font = UIFont(name: "Poppins-Regular", size: 14)
 		textField.layer.cornerRadius = 10
 		textField.layer.borderWidth = 1
+        textField.textColor = .white
 		textField.layer.borderColor = UIColor(rgb: 0x48485F).withAlphaComponent(0.1).cgColor
 		textField.backgroundColor = UIColor(rgb: 0x2D3142).withAlphaComponent(0.2)
 		textField.translatesAutoresizingMaskIntoConstraints = false

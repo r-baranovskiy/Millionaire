@@ -42,11 +42,13 @@ final class StartViewController: UIViewController {
     
     private func settingsButtons() {
         rulesButton.setTitle("правила игры", for: .normal)
+        rulesButton.layer.borderWidth = 0
         rulesButton.layer.cornerRadius = 10
         
         startGameButton.setTitle("играть", for: .normal)
         startGameButton.layer.cornerRadius = 10
         startGameButton.layer.borderWidth = 2
+        startGameButton.layer.borderColor = UIColor(red: 159/255, green: 37/255, blue: 255/255, alpha: 1).cgColor
     }
 }
 
