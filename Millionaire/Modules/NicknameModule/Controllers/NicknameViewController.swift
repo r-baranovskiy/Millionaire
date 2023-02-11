@@ -81,8 +81,7 @@ class NicknameViewController: UIViewController {
     
     @objc
     private func buttonRegistrationPressed() {
-        guard let username = userNameTextField.text else { return }
-        
+        guard let username = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         let score = ScoreModel(name: username)
         scoreManager.create(score: score)
         

@@ -43,6 +43,8 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 		setBackground()
         
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        
+        deleteLastSave()
 		
 		//Добавление блоков с элементами
 		view.addSubview(logoView)
@@ -69,6 +71,13 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
     private func backButtonPressed() {
         let vc = StartViewController()
         navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    private func deleteLastSave() {
+        if scoreManager.getAllSaves().count > 10 {
+            let scoreToDelete = scoreManager.getAllSaves()[10]
+            scoreManager.delete(score: scoreToDelete)
+        }
     }
 	
 	func setBackground() {
