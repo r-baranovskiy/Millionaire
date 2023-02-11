@@ -44,9 +44,9 @@ class ScoreTableViewCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	public func cellConfigure (game: String, result: String) {
-		nameLabel.text = game
-		scoreLabel.text = result
+    public func cellConfigure (with score: ScoreModel) {
+        nameLabel.text = score.name
+        scoreLabel.text = "\(score.sum)"
 	}
 	
 	override func prepareForReuse() {
