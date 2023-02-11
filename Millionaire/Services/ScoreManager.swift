@@ -3,6 +3,8 @@ import Foundation
 
 final class ScoreManager {
     
+    static let shared = ScoreManager()
+    
     private let dataSourceURL: URL
     private var allSaves: [ScoreModel] {
         get {

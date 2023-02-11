@@ -68,27 +68,24 @@ final class QuestionManager {
     }
     
     // Func to use hall help
-    private func useHallHelp() {
+    private func useHallHelp() -> [Bool: String]? {
         guard let currentQuestion = currentQuestion,
         isHallEnabled else {
-            return
+            return nil
         }
         
-        var answers: [[Bool:String]] = []
+        var rightAnswer = [Bool: String]()
         
         let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
-                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer].shuffled()
+                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer]
         
         for answer in currentAnswers {
             if answer[true] != nil {
-                answers.append(answer)
-            } else {
-                while answers.count < countOfAnswersInQuestion / 2 {
-                    answers.append(answer)
-                }
+                rightAnswer = answer
             }
         }
         isHallEnabled = false
+        return rightAnswer
     }
     
     // Func to use 50 percent help

@@ -18,7 +18,7 @@ class CustomTextField: UITextField {
 }
 class NicknameViewController: UIViewController {
     
-    var scoreManager = ScoreManager()
+    var scoreManager = ScoreManager.shared
 	
 	let logoView: UIImageView = {
 		let logoImage = UIImageView()
@@ -36,7 +36,7 @@ class NicknameViewController: UIViewController {
 		return label
 	}()
 	
-	let textFieldView: UITextField = {
+	let userNameTextField: UITextField = {
 		let textField = CustomTextField()
 		textField.attributedPlaceholder = NSAttributedString(string:"введите свой никнейм", attributes:[NSAttributedString.Key.foregroundColor: UIColor(rgb: 0xDADADA)])
 		textField.font = UIFont(name: "Poppins-Regular", size: 14)
@@ -48,13 +48,10 @@ class NicknameViewController: UIViewController {
 		return textField
 	}()
 	
-	let buttonView: UIButton = {
+	let buttonRegistration: UIButton = {
 		let button = UIButton()
 		button.setBackgroundImage(UIImage(named: "buttonStartGame"), for: .normal)
-//		button.backgroundColor = .green
 		button.setTitle("начать игру", for: .normal)
-		
-		
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
@@ -63,14 +60,13 @@ class NicknameViewController: UIViewController {
 		view.backgroundColor = .black
 		setBackground()
         
-        buttonView.addTarget(self, action: #selector(buttonViewPressed), for: .touchUpInside)
-		
+        buttonRegistration.addTarget(self, action: #selector(buttonRegistrationPressed), for: .touchUpInside)
 		
 		//Добавление блоков с элементами
 		view.addSubview(logoView)
 		view.addSubview(headerLabelView)
-		view.addSubview(textFieldView)
-		view.addSubview(buttonView)
+		view.addSubview(userNameTextField)
+		view.addSubview(buttonRegistration)
 		
 		
 		// Добавление констрейнтов для блоков
@@ -83,10 +79,10 @@ class NicknameViewController: UIViewController {
 	}
     
     @objc
-    private func buttonViewPressed() {
-        let userName = textFieldView.text
-        let score = ScoreModel(name: userName!, sum: QuestionManager.shared.currentQuestionCost)
+    private func buttonRegistrationPressed() {
+        guard let username = userNameTextField.text else { return }
         
+        let score = ScoreModel(name: username)
         scoreManager.create(score: score)
         
         let vc = ScoreViewController()
@@ -120,19 +116,19 @@ class NicknameViewController: UIViewController {
 	
 	//Текстфилд с вводом никнейма
 	func textFieldViewConstraints() {
-		textFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		textFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-		textFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-		textFieldView.topAnchor.constraint(equalTo: headerLabelView.bottomAnchor, constant: 30).isActive = true
-		textFieldView.heightAnchor.constraint(equalToConstant: 45).isActive = true
+		userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		userNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+		userNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+		userNameTextField.topAnchor.constraint(equalTo: headerLabelView.bottomAnchor, constant: 30).isActive = true
+		userNameTextField.heightAnchor.constraint(equalToConstant: 45).isActive = true
 	}
 	// Кнопка начать игру
 	func buttonViewConstraints() {
-		buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		buttonView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-		buttonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-		buttonView.topAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: 15).isActive = true
-		buttonView.heightAnchor.constraint(equalToConstant: 45).isActive = true
+		buttonRegistration.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		buttonRegistration.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+		buttonRegistration.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+		buttonRegistration.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 15).isActive = true
+		buttonRegistration.heightAnchor.constraint(equalToConstant: 45).isActive = true
 	}
 	
 	
