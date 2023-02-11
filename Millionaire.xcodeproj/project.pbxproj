@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B82FB532997B6A200C4A9CA /* QuestionsAndRewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B82FB522997B6A200C4A9CA /* QuestionsAndRewards.swift */; };
 		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
 		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
 		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
@@ -31,7 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3B82FB522997B6A200C4A9CA /* QuestionsAndRewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsAndRewards.swift; sourceTree = "<group>"; };
 		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
 		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				80ADA9E82991E6B6002D9D84 /* ChartViewController.swift */,
-				3B82FB522997B6A200C4A9CA /* QuestionsAndRewards.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -371,7 +368,6 @@
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
 				8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */,
-				3B82FB532997B6A200C4A9CA /* QuestionsAndRewards.swift in Sources */,
 				E2A270E02993085E0068A4A6 /* UILabel.swift in Sources */,
 				80ADA9F52991E71D002D9D84 /* RulesViewController.swift in Sources */,
 				E2A270DE299306BD0068A4A6 /* UIButton.swift in Sources */,
