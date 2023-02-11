@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E1DFCEA299833AE007EBFA1 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */; };
 		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
 		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
 		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
 		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		80ADA9E42991E683002D9D84 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */,
 				80ADA9E52991E68F002D9D84 /* ScoreViewController.swift */,
 			);
 			path = Controllers;
@@ -439,6 +442,7 @@
 				80F5B5D6299830B900C0F86C /* UIImageViewStartModule.swift in Sources */,
 				80A5717B2996778B00B4573C /* SoundManager.swift in Sources */,
 				80ADA9F82991E738002D9D84 /* StartViewController.swift in Sources */,
+				7E1DFCEA299833AE007EBFA1 /* ScoreTableViewCell.swift in Sources */,
 				80F5B5CF2997C4FB00C0F86C /* ScoreManager.swift in Sources */,
 				80ADA9F22991E703002D9D84 /* NicknameViewController.swift in Sources */,
 				80A5717729966D0F00B4573C /* Help.swift in Sources */,
