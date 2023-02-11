@@ -2,7 +2,7 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     
-    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFit)
+    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
     private let mainLogo = UIImageView(image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
     
     private let rulesLabel = UILabel(text: "Правила игры", font: .systemFont(ofSize: 42))
@@ -17,7 +17,7 @@ final class RulesViewController: UIViewController {
     
     private let rulesTextVeiw: UITextView = {
         let textView = UITextView()
-        textView.text = "Задача организации, в особенности же консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании модели развития. Равным образом укрепление и развитие структуры позволяет оценить значение форм развития. Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий способствует подготовки и реализации форм развития. С другой стороны начало повседневной работы по формированию позиции в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. "
+        textView.text = "Игра Кто хочет стать миллионером? - это конкурс викторина, в котором участники должны правильно ответить на ряд вопросов с несколькими вариантами ответов, чтобы перейти на следующий уровень. Всего 15 вопросов, каждый вопрос стоит определенной суммы денег, участники не имеют никаких временных ограничений для предоставления ответа. Участники также получают три вида подсказок, чтобы помочь себе, если они застряли на конкретном вопросе. Вопросы “Кто хочет стать миллионером?” структурированы в соответствии с пятью различными уровнями, причем уровень сложности постепенно увеличивается. Каждый уровень содержит три вопроса. Вопросы, сгруппированные на одном уровне, будут иметь одинаковую сложность. Например: вопросы 1-3 составляют первый уровень и будут содержать самые простые вопросы. Второй уровень (вопросы 4–6) будет несколько сложнее, за ним следует третий уровень (вопросы 7–9). Четвертый уровень (вопросы 10–12) будет состоять из действительно сложных вопросов, за которыми следует пятый и последний уровень (вопросы 13–15), имеющий самые сложные вопросы в игре. Важно помнить, что вопросы, составляющие каждый уровень, не обязательно будут относиться к одним и тем же или даже сходным темам, но их общий уровень сложности будет одинаковым. Немаловажно, что уровни вопросов не следует путать с «несгораемыми суммами» или структурой ценностей вопросов "
         textView.backgroundColor = .clear
         textView.textColor = .white
         textView.font = .systemFont(ofSize: 18)
@@ -34,12 +34,22 @@ final class RulesViewController: UIViewController {
         return button
     }()
     
+    private let playButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Играть", for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = .clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .black
         
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
         setConstraints()
     }
@@ -47,6 +57,12 @@ final class RulesViewController: UIViewController {
     @objc
     private func backButtonPressed() {
         let vc = StartViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    @objc
+    private func playButtonPressed() {
+        let vc = NicknameViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
 }
@@ -60,6 +76,7 @@ extension RulesViewController {
         self.view.addSubview(custView)
         custView.addSubview(rulesTextVeiw)
         self.view.addSubview(backButton)
+        self.view.addSubview(playButton)
         
         NSLayoutConstraint.activate([
             gradientlayer.topAnchor.constraint(equalTo: view.topAnchor),
@@ -90,7 +107,12 @@ extension RulesViewController {
             backButton.topAnchor.constraint(equalTo: custView.bottomAnchor, constant: 5),
             backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             backButton.widthAnchor.constraint(equalToConstant: 70),
-            backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
+            backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            
+            playButton.topAnchor.constraint(equalTo: custView.bottomAnchor, constant: 5),
+            playButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            playButton.widthAnchor.constraint(equalToConstant: 70),
+            playButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
     }
 }

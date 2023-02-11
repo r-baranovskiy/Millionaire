@@ -6,7 +6,7 @@ extension UILabel {
 
         self.text = text
         self.font = font
-        self.textColor = .systemBackground
+        self.textColor = .white
         self.textAlignment = .center
         self.numberOfLines = 0
         self.adjustsFontSizeToFitWidth = true

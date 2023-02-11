@@ -3,7 +3,7 @@ import UIKit
 
 final class StartViewController: UIViewController {
     
-    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFit)
+    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
     private let mainLogo = UIImageView(image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
     
     private let welcomeLabel = UILabel(text: "добро пожаловать в игру", font: UIFont.systemFont(ofSize: 22))
@@ -16,6 +16,7 @@ final class StartViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .black
+        SoundManager.shared.playSound(sound: .startApp)
         
         self.whoWontLabel.colorString(text: "КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ", coloredText: "МИЛЛИОНЕРОМ")
         
@@ -29,6 +30,7 @@ final class StartViewController: UIViewController {
     @objc
     private func rulesButtonPressed() {
         let vc = RulesViewController()
+        SoundManager.shared.stopSound()
         navigationController?.pushViewController(vc, animated: true)
     }
     
