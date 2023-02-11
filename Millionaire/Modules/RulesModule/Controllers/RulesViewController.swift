@@ -34,12 +34,22 @@ final class RulesViewController: UIViewController {
         return button
     }()
     
+    private let playButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Играть", for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = .clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .black
         
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
         setConstraints()
     }
@@ -47,6 +57,12 @@ final class RulesViewController: UIViewController {
     @objc
     private func backButtonPressed() {
         let vc = StartViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    @objc
+    private func playButtonPressed() {
+        let vc = NicknameViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
 }
@@ -60,6 +76,7 @@ extension RulesViewController {
         self.view.addSubview(custView)
         custView.addSubview(rulesTextVeiw)
         self.view.addSubview(backButton)
+        self.view.addSubview(playButton)
         
         NSLayoutConstraint.activate([
             gradientlayer.topAnchor.constraint(equalTo: view.topAnchor),
@@ -90,7 +107,12 @@ extension RulesViewController {
             backButton.topAnchor.constraint(equalTo: custView.bottomAnchor, constant: 5),
             backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             backButton.widthAnchor.constraint(equalToConstant: 70),
-            backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
+            backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            
+            playButton.topAnchor.constraint(equalTo: custView.bottomAnchor, constant: 5),
+            playButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            playButton.widthAnchor.constraint(equalToConstant: 70),
+            playButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
     }
 }
