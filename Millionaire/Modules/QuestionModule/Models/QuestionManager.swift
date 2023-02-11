@@ -12,11 +12,13 @@ final class QuestionManager {
     }
     
     private (set) var currentQuestion: Question?
+    private (set) var currentNumberQuestion = 0
+    private (set) var currentQuestionCost = 100
     
     //States for help buttons
-    private (set) var isFiftyEnabled: Bool = false
-    private (set) var isHallEnabled: Bool = false
-    private (set) var isCallToFriendEnebled: Bool = false
+    private (set) var isFiftyEnabled: Bool = true
+    private (set) var isHallEnabled: Bool = true
+    private (set) var isCallToFriendEnebled: Bool = true
     
     private let totalQuestions = 15
     private let countOfAnswersInQuestion = 4
@@ -62,7 +64,6 @@ final class QuestionManager {
                 }
             }
         }
-        
         isCallToFriendEnebled = false
     }
     
@@ -87,7 +88,6 @@ final class QuestionManager {
                 }
             }
         }
-        
         isHallEnabled = false
     }
     
@@ -142,6 +142,43 @@ final class QuestionManager {
         }
     }
     
+    private func updateCurrentQuestionCost(numberOrQuestion: Int) {
+        switch numberOrQuestion {
+        case 1:
+            currentQuestionCost = 100
+        case 2:
+            currentQuestionCost = 200
+        case 3:
+            currentQuestionCost = 300
+        case 4:
+            currentQuestionCost = 500
+        case 5:
+            currentQuestionCost = 1000
+        case 6:
+            currentQuestionCost = 2000
+        case 7:
+            currentQuestionCost = 4000
+        case 8:
+            currentQuestionCost = 8000
+        case 9:
+            currentQuestionCost = 16_000
+        case 10:
+            currentQuestionCost = 32_000
+        case 11:
+            currentQuestionCost = 64_000
+        case 12:
+            currentQuestionCost = 125_000
+        case 13:
+            currentQuestionCost = 250_000
+        case 14:
+            currentQuestionCost = 500_000
+        case 15:
+            currentQuestionCost = 1_000_000
+        default:
+            currentQuestionCost = 0
+        }
+    }
+    
     // Private func to generate random quesion
     private func updateCurrentQuestion() {
         let totalForEach = totalQuestions / 3
@@ -153,6 +190,10 @@ final class QuestionManager {
         if lowQuestions.count < totalForEach || mediumQuestions.count < totalForEach || hardQuestions.count < totalForEach {
             return
         }
+        
+        currentNumberQuestion += 1
+        
+        updateCurrentQuestionCost(numberOrQuestion: currentNumberQuestion)
         
         switch currentTypeQuestion {
         case .low:

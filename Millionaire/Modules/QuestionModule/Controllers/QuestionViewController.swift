@@ -8,9 +8,7 @@ class QuestionViewController: UIViewController {
     private var answeredSecondTime: Bool = false
     private var currentTitleAnswerButton: String?
     private var tagButton: Int?
-    private var currentNumberQuestion = 1
-    private var currentCostQuestion = 500
-    private let correctAnswer = QuestionManager.shared
+    private let questionManager = QuestionManager.shared
     
     private var gameTimer = Timer()
     private let aButton = CustomButton()
@@ -33,11 +31,11 @@ class QuestionViewController: UIViewController {
                                      font: .systemFont(ofSize: 28, weight: .semibold),
                                      textAlignment: .center,
                                      color: .white)
-    private lazy var questionNumberLabel = UILabel(text: "Вопрос \(currentNumberQuestion)",
+    private lazy var questionNumberLabel = UILabel(text: "Вопрос \(questionManager.currentNumberQuestion)",
                                               font: .systemFont(ofSize: 28, weight: .semibold),
                                               textAlignment: .center,
                                               color: .white)
-    private lazy var summLabel = UILabel(text: "💵 \(currentCostQuestion)₽",
+    private lazy var questionCostLabel = UILabel(text: "💵 \(questionManager.currentQuestionCost)₽",
                                               font: .systemFont(ofSize: 22, weight: .semibold),
                                               textAlignment: .left,
                                               color: .white)
@@ -85,6 +83,7 @@ class QuestionViewController: UIViewController {
         
         startTimer()
         updateQuestion()
+        updateStateButtons()
         setupView()
         setConstraints()
     }
@@ -137,9 +136,9 @@ class QuestionViewController: UIViewController {
     @objc func checkAnswer() {
         switch tagButton {
         case 1:
-            if correctAnswer.checkAnswer(buttonTag: aButton.tag) {
+            if questionManager.checkAnswer(buttonTag: aButton.tag) {
                 aButton.backgroundColor = .green
-                updateNumberQuestion()
+                updateInfoQuestion()
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 aButton.backgroundColor = .red
@@ -151,9 +150,9 @@ class QuestionViewController: UIViewController {
                 }
             }
         case 2:
-            if correctAnswer.checkAnswer(buttonTag: bButton.tag) {
+            if questionManager.checkAnswer(buttonTag: bButton.tag) {
                 bButton.backgroundColor = .green
-                updateNumberQuestion()
+                updateInfoQuestion()
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 bButton.backgroundColor = .red
@@ -165,9 +164,9 @@ class QuestionViewController: UIViewController {
                 }
             }
         case 3:
-            if correctAnswer.checkAnswer(buttonTag: cButton.tag){
+            if questionManager.checkAnswer(buttonTag: cButton.tag){
                 cButton.backgroundColor = .green
-                updateNumberQuestion()
+                updateInfoQuestion()
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 cButton.backgroundColor = .red
@@ -179,9 +178,9 @@ class QuestionViewController: UIViewController {
                 }
             }
         case 4:
-            if correctAnswer.checkAnswer(buttonTag: dButton.tag){
+            if questionManager.checkAnswer(buttonTag: dButton.tag){
                 dButton.backgroundColor = .green
-                updateNumberQuestion()
+                updateInfoQuestion()
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 dButton.backgroundColor = .red
@@ -198,11 +197,8 @@ class QuestionViewController: UIViewController {
 
     }
     
-    private func updateNumberQuestion() {
-        print("Перенести функцию на кнопку Следующий вопрос ChartViewController")
-        currentNumberQuestion += 1
-        questionNumberLabel.text = "Вопрос \(currentNumberQuestion)"
-        // добавить обновление цены
+    private func updateInfoQuestion() {
+        questionNumberLabel.text = "Вопрос \(questionManager.currentNumberQuestion)"
     }
     
     private func updateQuestion() {
@@ -223,6 +219,12 @@ class QuestionViewController: UIViewController {
         bButton.setTitle("B: \(titleBButton)" , for: .normal)
         cButton.setTitle("C: \(titleCButton)" , for: .normal)
         dButton.setTitle("D: \(titleDButton)", for: .normal)
+    }
+    
+    private func updateStateButtons() {
+        fiftyButton.isEnabled = questionManager.isFiftyEnabled
+        callFriendsButton.isEnabled = questionManager.isCallToFriendEnebled
+        hallHelpButton.isEnabled = questionManager.isHallEnabled
     }
         
     private func handleButtons(){
@@ -247,14 +249,16 @@ class QuestionViewController: UIViewController {
 // MARK: - Help Buttons action
     
     @objc func fiftyButtonAction() {
-        print("Подсказка 50/50")
-        QuestionManager.shared.useFiftyHelp(1)
-        
+        questionManager.userHelp(typeOfHelp: .fifty)
+        updateStateButtons()
     }
     
     @objc func hallHelpButtonAction() {
             showInfoHelpHall()
-            hallHelpButton.setImage(UIImage(named: ""), for: .normal)
+//            hallHelpButton.setImage(UIImage(named: ""), for: .normal)
+        
+        questionManager.userHelp(typeOfHelp: .hall)
+        updateStateButtons()
     }
     
     func showInfoHelpHall() {
@@ -267,7 +271,8 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func callFriendsButtonAction() {
-        print("Звонок другу")
+        questionManager.userHelp(typeOfHelp: .callToFriend)
+        updateStateButtons()
     }
     
     @objc func noticeButtonAction() {
@@ -333,7 +338,7 @@ extension QuestionViewController {
         self.view.addSubview(mainLogo)
         self.view.addSubview(hitButtonsStackView)
         self.view.addSubview(questionNumberLabel)
-        self.view.addSubview(summLabel)
+        self.view.addSubview(questionCostLabel)
         self.view.addSubview(backgroundQuestion)
         backgroundQuestion.addSubview(questionLabel)
         self.view.addSubview(answerButtonStackView)
@@ -356,9 +361,9 @@ extension QuestionViewController {
             questionNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             questionNumberLabel.heightAnchor.constraint(equalToConstant: 42),
             
-            summLabel.topAnchor.constraint(equalTo: hitButtonsStackView.bottomAnchor, constant: 16),
-            summLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            summLabel.heightAnchor.constraint(equalToConstant: 42),
+            questionCostLabel.topAnchor.constraint(equalTo: hitButtonsStackView.bottomAnchor, constant: 16),
+            questionCostLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            questionCostLabel.heightAnchor.constraint(equalToConstant: 42),
             
             backgroundQuestion.topAnchor.constraint(equalTo: questionNumberLabel.bottomAnchor, constant: 15),
             backgroundQuestion.heightAnchor.constraint(equalToConstant: 122),

@@ -24,13 +24,10 @@ final class ScoreManager {
     }
     
     private func loadScore() -> [[String: Int]]? {
-        guard let scores = userDefaults.value(forKey: "scores") else { return nil}
-        guard let totalScores = scores as? [[String: Int]] else { return nil }
+        guard let scores = userDefaults.value(forKey: "scores") as? [[String: Int]] else { return nil}
         
-        var sortedScores = [[String: Int]]()
+        //var sortedScores = [[String: Int]]()
         
-        sortedScores = totalScores.sorted(by: { $0.values > $1.values })
-        
-        return totalScores
+        return scores
     }
 }
