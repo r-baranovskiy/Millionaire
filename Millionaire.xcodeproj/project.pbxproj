@@ -304,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				80ADA9E82991E6B6002D9D84 /* ChartViewController.swift */,
+				3B82FB522997B6A200C4A9CA /* QuestionsAndRewards.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -452,6 +453,7 @@
 				6D491E53299583AB00C3CDE1 /* WinViewController.swift in Sources */,
 				80A5717729966D0F00B4573C /* Help.swift in Sources */,
 				8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */,
+				3B82FB532997B6A200C4A9CA /* QuestionsAndRewards.swift in Sources */,
 				E2A270E02993085E0068A4A6 /* UILabel.swift in Sources */,
 				80ADA9F52991E71D002D9D84 /* RulesViewController.swift in Sources */,
 				E2A270DE299306BD0068A4A6 /* UIButton.swift in Sources */,
