@@ -35,6 +35,8 @@
 		80F5B5CF2997C4FB00C0F86C /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F5B5CE2997C4FB00C0F86C /* ScoreManager.swift */; };
 		80F5B5D6299830B900C0F86C /* UIImageViewStartModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F5B5D5299830B900C0F86C /* UIImageViewStartModule.swift */; };
 		80F5B5D8299830D000C0F86C /* UILabelStartModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F5B5D7299830D000C0F86C /* UILabelStartModule.swift */; };
+		80F5B5DB299843FB00C0F86C /* StartScreen.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 80F5B5DA299843FB00C0F86C /* StartScreen.PNG */; };
+		80F5B5DD2998442000C0F86C /* QuestionScreen.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 80F5B5DC2998442000C0F86C /* QuestionScreen.PNG */; };
 		E2A270D82992DF9F0068A4A6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270D72992DF9F0068A4A6 /* UIColor.swift */; };
 		E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270DB2992E78A0068A4A6 /* UIstackView.swift */; };
 		E2A270DE299306BD0068A4A6 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A270DD299306BD0068A4A6 /* UIButton.swift */; };
@@ -72,6 +74,8 @@
 		80F5B5CE2997C4FB00C0F86C /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		80F5B5D5299830B900C0F86C /* UIImageViewStartModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewStartModule.swift; sourceTree = "<group>"; };
 		80F5B5D7299830D000C0F86C /* UILabelStartModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelStartModule.swift; sourceTree = "<group>"; };
+		80F5B5DA299843FB00C0F86C /* StartScreen.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartScreen.PNG; sourceTree = "<group>"; };
+		80F5B5DC2998442000C0F86C /* QuestionScreen.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionScreen.PNG; sourceTree = "<group>"; };
 		E2A270D72992DF9F0068A4A6 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E2A270DB2992E78A0068A4A6 /* UIstackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIstackView.swift; sourceTree = "<group>"; };
 		E2A270DD299306BD0068A4A6 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 		80ADA9B92991E557002D9D84 = {
 			isa = PBXGroup;
 			children = (
+				80F5B5D92998429200C0F86C /* ReadmeResources */,
 				80ADA9FA2991E831002D9D84 /* README.md */,
 				80ADA9C42991E557002D9D84 /* Millionaire */,
 				80ADA9C32991E557002D9D84 /* Products */,
@@ -353,6 +358,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		80F5B5D92998429200C0F86C /* ReadmeResources */ = {
+			isa = PBXGroup;
+			children = (
+				80F5B5DA299843FB00C0F86C /* StartScreen.PNG */,
+				80F5B5DC2998442000C0F86C /* QuestionScreen.PNG */,
+			);
+			path = ReadmeResources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -412,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				802D4ADB2991F11C00911F7A /* Poppins-SemiBold.ttf in Resources */,
+				80F5B5DD2998442000C0F86C /* QuestionScreen.PNG in Resources */,
 				80A57175299669A500B4573C /* sound-question-module-right-answer.mp3 in Resources */,
 				80A57171299669A500B4573C /* sound-question-module-start-game.mp3 in Resources */,
 				80A57174299669A500B4573C /* sound-question-module-waiting.mp3 in Resources */,
@@ -420,6 +435,7 @@
 				80ADA9FB2991E831002D9D84 /* README.md in Resources */,
 				80ADA9D22991E558002D9D84 /* LaunchScreen.storyboard in Resources */,
 				80ADA9CF2991E558002D9D84 /* Assets.xcassets in Resources */,
+				80F5B5DB299843FB00C0F86C /* StartScreen.PNG in Resources */,
 				802D4ADA2991F11C00911F7A /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
