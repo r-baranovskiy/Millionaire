@@ -43,9 +43,9 @@ final class SoundManager {
         }
     }
     
-//    func stopSound() {
-//        guard let guardPlayer = player else { return }
-//        guardPlayer.stop()
-//        player = nil
-//    }
+    func stopSound() {
+        guard let guardPlayer = player else { return }
+        guardPlayer.stop()
+        player = nil
+    }
 }
