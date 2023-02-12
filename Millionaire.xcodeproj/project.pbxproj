@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D491E5A29983FB300C3CDE1 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E5929983FB300C3CDE1 /* ScoreModel.swift */; };
+		6D491E5C29990F7800C3CDE1 /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E5B29990F7800C3CDE1 /* UIAlert.swift */; };
 		7E1DFCEA299833AE007EBFA1 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */; };
 		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
 		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		6D491E5929983FB300C3CDE1 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
+		6D491E5B29990F7800C3CDE1 /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				E2A270DB2992E78A0068A4A6 /* UIstackView.swift */,
 				E2A270DD299306BD0068A4A6 /* UIButton.swift */,
 				E2A270DF2993085E0068A4A6 /* UILabel.swift */,
+				6D491E5B29990F7800C3CDE1 /* UIAlert.swift */,
 				6D551A8D29953F76003697CA /* StartModule */,
 			);
 			path = Extensions;
@@ -462,6 +465,7 @@
 				80ADA9C62991E557002D9D84 /* AppDelegate.swift in Sources */,
 				E2A270DC2992E78A0068A4A6 /* UIstackView.swift in Sources */,
 				80F5B5DF29988D1A00C0F86C /* LoseViewController.swift in Sources */,
+				6D491E5C29990F7800C3CDE1 /* UIAlert.swift in Sources */,
 				80A571682996634100B4573C /* UI Bugs.swift in Sources */,
 				8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */,
 				80A5716A2996661700B4573C /* Tasks.swift in Sources */,

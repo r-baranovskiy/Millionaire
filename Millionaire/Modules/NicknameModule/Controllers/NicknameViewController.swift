@@ -91,13 +91,17 @@ class NicknameViewController: UIViewController {
     
     @objc
     private func buttonRegistrationPressed() {
-        guard let username = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-        let score = ScoreModel(name: username)
-        scoreManager.create(score: score)
-        
-        let vc = QuestionViewController()
-        SoundManager.shared.stopSound()
-        navigationController?.pushViewController(vc, animated: false)
+        if let text = userNameTextField.text, !text.isEmpty {
+            alertOkL(title: "Error", messege: "Please enter correct Name")
+        } else {
+            guard let username = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+            let score = ScoreModel(name: username)
+            scoreManager.create(score: score)
+            
+            let vc = QuestionViewController()
+            SoundManager.shared.stopSound()
+            navigationController?.pushViewController(vc, animated: false)
+        }
     }
 	
 	func setBackground() {
