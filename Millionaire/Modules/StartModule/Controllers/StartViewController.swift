@@ -10,6 +10,7 @@ final class StartViewController: UIViewController {
     private let whoWontLabel = UILabel(text: "", font: UIFont.systemFont(ofSize: 28, weight: .bold))
     
     private let rulesButton = CustomButton()
+    private let scoreButton = CustomButton()
     private let startGameButton = CustomButton()
     
     override func viewDidLoad() {
@@ -45,6 +46,10 @@ final class StartViewController: UIViewController {
         rulesButton.layer.borderWidth = 0
         rulesButton.layer.cornerRadius = 10
         
+        scoreButton.setTitle("рейтинг", for: .normal)
+        scoreButton.layer.borderWidth = 0
+        scoreButton.layer.cornerRadius = 10
+        
         startGameButton.setTitle("играть", for: .normal)
         startGameButton.layer.cornerRadius = 10
         startGameButton.layer.borderWidth = 2
@@ -60,6 +65,7 @@ extension StartViewController {
         self.view.addSubview(welcomeLabel)
         self.view.addSubview(whoWontLabel)
         self.view.addSubview(rulesButton)
+        self.view.addSubview(scoreButton)
         self.view.addSubview(startGameButton)
         
         NSLayoutConstraint.activate([
@@ -88,7 +94,12 @@ extension StartViewController {
             rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
             rulesButton.heightAnchor.constraint(equalToConstant: 45),
             
-            startGameButton.topAnchor.constraint(equalTo: rulesButton.bottomAnchor, constant: 10),
+            scoreButton.topAnchor.constraint(equalTo: rulesButton.bottomAnchor, constant: 7),
+            scoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 75),
+            scoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
+            scoreButton.heightAnchor.constraint(equalToConstant: 45),
+            
+            startGameButton.topAnchor.constraint(equalTo: scoreButton.bottomAnchor, constant: 10),
             startGameButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 75),
             startGameButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
             startGameButton.heightAnchor.constraint(equalToConstant: 60),
