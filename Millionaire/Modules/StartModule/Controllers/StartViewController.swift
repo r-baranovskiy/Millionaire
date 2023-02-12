@@ -30,7 +30,6 @@ final class StartViewController: UIViewController {
     @objc
     private func rulesButtonPressed() {
         let vc = RulesViewController()
-        SoundManager.shared.stopSound()
         navigationController?.pushViewController(vc, animated: true)
     }
     
