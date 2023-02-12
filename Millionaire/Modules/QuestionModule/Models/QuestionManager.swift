@@ -45,12 +45,30 @@ final class QuestionManager {
         isHallEnabled = true
         isFiftyEnabled = true
         isPossibleErrorEnebled = true
-        
-        if currentTotalSum > 100 {
-            let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
-            ScoreManager.shared.create(score: score)
-        }
         currentTotalSum = 0
+    }
+    
+    // MARK: - SaveToScore
+    
+    func saveIfLoseGame() {
+        var score = 0
+        switch currentTotalSum {
+        case 1000...16000:
+            score = 1000
+            let score = ScoreModel(name: currentUsername, sum: score)
+            ScoreManager.shared.create(score: score)
+        case 32000...500000:
+            score = 32000
+            let score = ScoreModel(name: currentUsername, sum: score)
+            ScoreManager.shared.create(score: score)
+        case 1000000:
+            score = 1000000
+            let score = ScoreModel(name: currentUsername, sum: score)
+            ScoreManager.shared.create(score: score)
+        default:
+            break
+        }
+        
     }
     
     // MARK: - Help

@@ -164,6 +164,7 @@ class QuestionViewController: UIViewController {
     }
     
     private func endGame() {
+        questionManager.saveIfLoseGame()
         let loseVC = LoseViewController()
         navigationController?.pushViewController(loseVC, animated: false)
     }
