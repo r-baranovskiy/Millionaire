@@ -165,6 +165,7 @@ final class QuestionManager {
         switch numberOrQuestion {
         case 1:
             currentQuestionCost = 100
+            currentTotalSum = 0
         case 2:
             currentQuestionCost = 200
             currentTotalSum = 100
