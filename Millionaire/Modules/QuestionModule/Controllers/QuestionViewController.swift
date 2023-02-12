@@ -283,7 +283,18 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func noticeButtonAction() {
-        print("Заметки")
+        
+        let alert = UIAlertController(title: "Забрать деньги?", message: "Вы уверены, что хотите забрать деньги?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Да", style: .default) { _ in
+            QuestionManager.shared.safeMoney()
+            self.questionManager.newGame()
+            self.soundManager.stopSound()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
     
     // MARK: - Alerts

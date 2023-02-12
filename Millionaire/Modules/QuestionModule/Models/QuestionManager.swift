@@ -57,7 +57,7 @@ final class QuestionManager {
             score = 1000
             let score = ScoreModel(name: currentUsername, sum: score)
             ScoreManager.shared.create(score: score)
-        case 32000...500000:
+        case 32000...500_000:
             score = 32000
             let score = ScoreModel(name: currentUsername, sum: score)
             ScoreManager.shared.create(score: score)
@@ -68,10 +68,18 @@ final class QuestionManager {
         default:
             break
         }
-        
+        newGame()
     }
     
     // MARK: - Help
+    
+    func safeMoney() {
+        if currentTotalSum >= 100 {
+            let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
+            ScoreManager.shared.create(score: score)
+            newGame()
+        }
+    }
     
     func userHelp(typeOfHelp: HelpType) {
         switch typeOfHelp {
@@ -159,34 +167,46 @@ final class QuestionManager {
             currentQuestionCost = 100
         case 2:
             currentQuestionCost = 200
+            currentTotalSum = 100
         case 3:
             currentQuestionCost = 300
+            currentTotalSum = 200
         case 4:
             currentQuestionCost = 500
+            currentTotalSum = 300
         case 5:
             currentQuestionCost = 1000
+            currentTotalSum = 500
         case 6:
-            currentTotalSum = 1000
             currentQuestionCost = 2000
+            currentTotalSum = 1000
         case 7:
             currentQuestionCost = 4000
+            currentTotalSum = 2000
         case 8:
             currentQuestionCost = 8000
+            currentTotalSum = 4000
         case 9:
             currentQuestionCost = 16_000
+            currentTotalSum = 8000
         case 10:
             currentQuestionCost = 32_000
+            currentTotalSum = 16_000
         case 11:
-            currentTotalSum = 32_000
             currentQuestionCost = 64_000
+            currentTotalSum = 32_000
         case 12:
             currentQuestionCost = 125_000
+            currentTotalSum = 64_000
         case 13:
             currentQuestionCost = 250_000
+            currentTotalSum = 125_000
         case 14:
             currentQuestionCost = 500_000
+            currentTotalSum = 250_000
         case 15:
             currentQuestionCost = 1_000_000
+            currentTotalSum = 500_000
         default:
             currentQuestionCost = 0
         }
