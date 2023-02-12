@@ -51,7 +51,6 @@ final class QuestionManager {
             let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
             ScoreManager.shared.create(score: score)
         }
-        
         currentTotalSum = 0
     }
     
