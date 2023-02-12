@@ -63,7 +63,15 @@ class NicknameViewController: UIViewController {
 		view.backgroundColor = .black
 		setBackground()
         
+        userNameTextField.delegate = self
+        
         buttonRegistration.addTarget(self, action: #selector(buttonRegistrationPressed), for: .touchUpInside)
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
+        
+        keyboardSetting()
 		
 		//Добавление блоков с элементами
 		view.addSubview(logoView)
@@ -104,6 +112,12 @@ class NicknameViewController: UIViewController {
 		view.addSubview(imageView)
 		self.view.sendSubviewToBack(imageView)
 	}
+    
+    private func keyboardSetting() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(NicknameViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(NicknameViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 	
 	func logoViewConstraints() {
 		logoView.widthAnchor.constraint(equalToConstant: 250).isActive = true
@@ -153,5 +167,32 @@ extension UIColor {
 		   blue: rgb & 0xFF
 	   )
    }
+}
+
+extension NicknameViewController {
+    @objc
+    private func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height / 2
+            }
+        }
+    }
+
+    @objc
+    private func keyboardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height / 2
+            }
+        }
+    }
+}
+
+extension NicknameViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
