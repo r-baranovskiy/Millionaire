@@ -1,45 +1,41 @@
 import UIKit
 
-final class LoseViewController: UIViewController {
-    
+final class WinViewController: UIViewController {
+
     private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
     private let mainLogo = UIImageView(image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
     
     private let gameStopped = UILabel(text: "ИГРА ОКОНЧЕНА", font: .systemFont(ofSize: 28))
-    private let yourWinnings = UILabel(text: "Ваш выигрыш: 0₽", font: .systemFont(ofSize: 22))
+    private let yourWinnings = UILabel(text: "Ваш выигрыш: 1000₽", font: .systemFont(ofSize: 22))
     
-    private let loseImageView = UIImageView(image: UIImage(named: "loseResultIcon")!, contentMode: .scaleAspectFit)
+    private let winImagView = UIImageView(image: UIImage(named: "winResultIcon")!, contentMode: .scaleAspectFit)
     
     private let playAgainButton = CustomButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         playAgainButton.setTitle("играть еще раз", for: .normal)
+        
         playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .touchUpInside)
-        configureAppearance()
+        
         setConstraints()
-    }
-    
-    func configureAppearance() {
-        //SoundManager.shared.stopSound()
-        yourWinnings.text = "Ваш выигрыш: \(QuestionManager.shared.currentQuestionCost)"
     }
     
     @objc
     private func playAgainButtonPressed() {
-        QuestionManager.shared.newGame()
-        navigationController?.popToRootViewController(animated: false)
+        // code
     }
 }
 
-// MARK: - LoseViewControllerConstraints
-extension LoseViewController {
+// MARK: - WinViewControllerConstraints
+extension WinViewController {
     private func setConstraints() {
         self.view.addSubview(gradientlayer)
         self.view.addSubview(mainLogo)
         self.view.addSubview(gameStopped)
         self.view.addSubview(yourWinnings)
-        self.view.addSubview(loseImageView)
+        self.view.addSubview(winImagView)
         self.view.addSubview(playAgainButton)
         
         NSLayoutConstraint.activate([
@@ -63,12 +59,12 @@ extension LoseViewController {
             yourWinnings.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             yourWinnings.heightAnchor.constraint(equalToConstant: 30),
             
-            loseImageView.topAnchor.constraint(equalTo: yourWinnings.bottomAnchor, constant: 50),
-            loseImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
-            loseImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-            loseImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -220),
+            winImagView.topAnchor.constraint(equalTo: yourWinnings.bottomAnchor, constant: 30),
+            winImagView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+            winImagView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
+            winImagView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -240),
             
-            playAgainButton.topAnchor.constraint(equalTo: loseImageView.bottomAnchor, constant: 20),
+            playAgainButton.topAnchor.constraint(equalTo: winImagView.bottomAnchor, constant: 20),
             playAgainButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
             playAgainButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
             playAgainButton.heightAnchor.constraint(equalToConstant: 60)

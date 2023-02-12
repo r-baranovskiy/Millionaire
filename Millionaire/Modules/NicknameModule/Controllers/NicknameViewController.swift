@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
 
 	let padding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0);
 
@@ -43,6 +43,8 @@ class NicknameViewController: UIViewController {
 		textField.layer.cornerRadius = 10
 		textField.layer.borderWidth = 1
         textField.textColor = .white
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
 		textField.layer.borderColor = UIColor(rgb: 0x48485F).withAlphaComponent(0.1).cgColor
 		textField.backgroundColor = UIColor(rgb: 0x2D3142).withAlphaComponent(0.2)
 		textField.translatesAutoresizingMaskIntoConstraints = false
@@ -85,8 +87,9 @@ class NicknameViewController: UIViewController {
         let score = ScoreModel(name: username)
         scoreManager.create(score: score)
         
-        let vc = ScoreViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = QuestionViewController()
+        SoundManager.shared.stopSound()
+        navigationController?.pushViewController(vc, animated: false)
     }
 	
 	func setBackground() {
