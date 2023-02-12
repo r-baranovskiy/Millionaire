@@ -7,7 +7,6 @@ class QuestionViewController: UIViewController {
     private var isRepeatedAnswerAllowed: Bool = false
     private var answeredSecondTime: Bool = false
     private var currentTitleAnswerButton: String?
-    private var tagButton: Int?
     private let questionManager = QuestionManager.shared
     private let soundManager = SoundManager.shared
     
@@ -129,79 +128,98 @@ class QuestionViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         handleButtons()
         gameTimer.invalidate()
-        tagButton = button.tag
         currentTitleAnswerButton = button.currentTitle
         
         (fiftyButton.isEnabled, hallHelpButton.isEnabled, callFriendsButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
         soundManager.stopSound()
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkAnswer), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+            self.checkAnswer(button: button)
+        }
     }
     
-    @objc func checkAnswer() {
-        switch tagButton {
-        case 1:
-            if questionManager.checkAnswer(buttonTag: aButton.tag) {
-                aButton.backgroundColor = .green
-                updateInfoQuestion()
-                self.soundManager.playSound(sound: .rightAnswer)
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-            } else {
-                aButton.backgroundColor = .red
-                if !answeredSecondTime && !possibleError{
-                    startTimer()
-                }
-                if possibleError || (!possibleError && answeredSecondTime){
-                    showAlertWrongAnswer()
-                }
-            }
-        case 2:
-            if questionManager.checkAnswer(buttonTag: bButton.tag) {
-                bButton.backgroundColor = .green
-                updateInfoQuestion()
-                self.soundManager.playSound(sound: .rightAnswer)
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-            } else {
-                bButton.backgroundColor = .red
-                if !answeredSecondTime && !possibleError{
-                    startTimer()
-                }
-                if possibleError || (!possibleError && answeredSecondTime){
-                    showAlertWrongAnswer()
-                }
-            }
-        case 3:
-            if questionManager.checkAnswer(buttonTag: cButton.tag){
-                cButton.backgroundColor = .green
-                updateInfoQuestion()
-                self.soundManager.playSound(sound: .rightAnswer)
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-            } else {
-                cButton.backgroundColor = .red
-                if !answeredSecondTime && !possibleError{
-                    startTimer()
-                }
-                if possibleError || (!possibleError && answeredSecondTime){
-                    showAlertWrongAnswer()
-                }
-            }
-        case 4:
-            if questionManager.checkAnswer(buttonTag: dButton.tag){
-                dButton.backgroundColor = .green
-                updateInfoQuestion()
-                self.soundManager.playSound(sound: .rightAnswer)
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-            } else {
-                dButton.backgroundColor = .red
-                if !answeredSecondTime && !possibleError{
-                    startTimer()
-                }
-                if possibleError || (!possibleError && answeredSecondTime){
-                    showAlertWrongAnswer()
-                }
-            }
-        default:
-            print("Error")
+    @objc func checkAnswer(button: UIButton) {
+        let tagOfRightButton = questionManager.checkAnswer()
+        
+        var isRight = Bool()
+        
+        if tagOfRightButton == button.tag {
+            isRight = true
+            button.backgroundColor = .green
         }
+        
+        if isRight {
+            updateInfoQuestion()
+            soundManager.playSound(sound: .rightAnswer)
+            goToChartViewController()
+        } else {
+            button.backgroundColor = .red
+            soundManager.playSound(sound: .failAnswer)
+        }
+        
+//        switch tag {
+//        case 1:
+//            if questionManager.checkAnswer(buttonTag: aButton.tag) {
+//                aButton.backgroundColor = .green
+//                updateInfoQuestion()
+//                self.soundManager.playSound(sound: .rightAnswer)
+//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+//            } else {
+//                aButton.backgroundColor = .red
+//                if !answeredSecondTime && !possibleError{
+//                    startTimer()
+//                }
+//                if possibleError || (!possibleError && answeredSecondTime){
+//                    showAlertWrongAnswer()
+//                }
+//            }
+//        case 2:
+//            if questionManager.checkAnswer(buttonTag: bButton.tag) {
+//                bButton.backgroundColor = .green
+//                updateInfoQuestion()
+//                self.soundManager.playSound(sound: .rightAnswer)
+//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+//            } else {
+//                bButton.backgroundColor = .red
+//                if !answeredSecondTime && !possibleError{
+//                    startTimer()
+//                }
+//                if possibleError || (!possibleError && answeredSecondTime){
+//                    showAlertWrongAnswer()
+//                }
+//            }
+//        case 3:
+//            if questionManager.checkAnswer(buttonTag: cButton.tag){
+//                cButton.backgroundColor = .green
+//                updateInfoQuestion()
+//                self.soundManager.playSound(sound: .rightAnswer)
+//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+//            } else {
+//                cButton.backgroundColor = .red
+//                if !answeredSecondTime && !possibleError{
+//                    startTimer()
+//                }
+//                if possibleError || (!possibleError && answeredSecondTime){
+//                    showAlertWrongAnswer()
+//                }
+//            }
+//        case 4:
+//            if questionManager.checkAnswer(buttonTag: dButton.tag){
+//                dButton.backgroundColor = .green
+//                updateInfoQuestion()
+//                self.soundManager.playSound(sound: .rightAnswer)
+//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
+//            } else {
+//                dButton.backgroundColor = .red
+//                if !answeredSecondTime && !possibleError{
+//                    startTimer()
+//                }
+//                if possibleError || (!possibleError && answeredSecondTime){
+//                    showAlertWrongAnswer()
+//                }
+//            }
+//        default:
+//            print("Error")
+//        }
     }
     
     private func endGame() {
@@ -358,7 +376,7 @@ extension QuestionViewController {
             mainLogo.widthAnchor.constraint(equalToConstant: 158),
             mainLogo.heightAnchor.constraint(equalToConstant: 158),
         ])
-        let time = questionManager.isTheFirstGame ? 8 : 0
+        let time = questionManager.isTheFirstGame ? 12 : 0
         UIView.animate(withDuration: TimeInterval(time)) {
             self.mainLogo.alpha = 1
         }

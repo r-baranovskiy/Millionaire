@@ -38,7 +38,7 @@ final class QuestionManager {
         case .fifty:
             useFiftyHelp()
         case .hall:
-            useHallHelp()
+            print("")
         case .callToFriend:
             useCallToFriend()
         }
@@ -121,23 +121,31 @@ final class QuestionManager {
     }
     
     // Func to check on the right answer
-    func checkAnswer(buttonTag: Int) -> Bool {
-        switch buttonTag {
-        case 1:
-            print(currentQuestion?.answers.aAnswer[true] != nil ? true : false)
-            return currentQuestion?.answers.aAnswer[true] != nil ? true : false
-        case 2:
-            print(currentQuestion?.answers.bAnswer[true] != nil ? true : false)
-            return currentQuestion?.answers.bAnswer[true] != nil ? true : false
-        case 3:
-            print(currentQuestion?.answers.cAnswer[true] != nil ? true : false)
-            return currentQuestion?.answers.cAnswer[true] != nil ? true : false
-        case 4:
-            print(currentQuestion?.answers.dAnswer[true] != nil ? true : false)
-            return currentQuestion?.answers.dAnswer[true] != nil ? true : false
-        default:
-            return false
+    func checkAnswer() -> Int {
+        if currentQuestion?.answers.aAnswer[true] != nil {
+            return 1
+        } else if currentQuestion?.answers.bAnswer[true] != nil {
+            return 2
+        } else if currentQuestion?.answers.cAnswer[true] != nil {
+            return 3
+        } else {
+            return 4
         }
+//        switch buttonTag {
+//        case 1:
+//            if currentQuestion?.answers.aAnswer[true] != nil {
+//                return 1
+//            }
+//            return currentQuestion?.answers.aAnswer[true] != nil ? true : false
+//        case 2:
+//            return currentQuestion?.answers.bAnswer[true] != nil ? true : false
+//        case 3:
+//            return currentQuestion?.answers.cAnswer[true] != nil ? true : false
+//        case 4:
+//            return currentQuestion?.answers.dAnswer[true] != nil ? true : false
+//        default:
+//            return false
+//        }
     }
     
     private func updateCurrentQuestionCost(numberOrQuestion: Int) {
