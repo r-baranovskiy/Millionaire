@@ -11,11 +11,13 @@ final class QuestionManager {
         case callToFriend
     }
     
+    var isTheFirstGame = true
+    var currentTotalSum = 0
+    var currentUsername: String = "Guest"
+    
     private var lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
     private var mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
     private var hardQuestions = QuestionDataBase.shared.fetchRandomHardQuestions()
-    
-    var isTheFirstGame = true
     
     private (set) var currentQuestion: Question?
     private (set) var currentNumberQuestion = 0
@@ -44,6 +46,13 @@ final class QuestionManager {
         isHallEnabled = true
         isHallEnabled = true
         isCallToFriendEnebled = true
+        
+        if currentTotalSum > 0 {
+            let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
+            ScoreManager.shared.create(score: score)
+        }
+        
+        currentTotalSum = 0
     }
     
     // MARK: - Help
@@ -162,6 +171,7 @@ final class QuestionManager {
         case 5:
             currentQuestionCost = 1000
         case 6:
+            currentTotalSum = 1000
             currentQuestionCost = 2000
         case 7:
             currentQuestionCost = 4000
@@ -172,6 +182,7 @@ final class QuestionManager {
         case 10:
             currentQuestionCost = 32_000
         case 11:
+            currentTotalSum = 32_000
             currentQuestionCost = 64_000
         case 12:
             currentQuestionCost = 125_000
