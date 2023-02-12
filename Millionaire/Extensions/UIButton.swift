@@ -51,4 +51,13 @@ class CustomButton: UIButton {
 
         layer.add(shake, forKey: "position")
     }
+    
+    func buttonUnpressed() {
+          CustomButton.animate(withDuration: 2.0, delay: 0.5, options: .autoreverse) {
+              self.layer.borderWidth = 3
+              self.layer.borderColor = UIColor.green.cgColor
+          } completion: { (isCompleted) in
+              self.layer.borderWidth = 0
+          }
+      }
 }

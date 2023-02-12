@@ -53,7 +53,7 @@ final class QuestionManager {
         case .fifty:
             useFiftyHelp()
         case .hall:
-            print("")
+            useHallHelp()
         case .callToFriend:
             useCallToFriend()
         }
@@ -84,24 +84,8 @@ final class QuestionManager {
     }
     
     // Func to use hall help
-    private func useHallHelp() -> [Bool: String]? {
-        guard let currentQuestion = currentQuestion,
-              isHallEnabled else {
-            return nil
-        }
-        
-        var rightAnswer = [Bool: String]()
-        
-        let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
-                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer]
-        
-        for answer in currentAnswers {
-            if answer[true] != nil {
-                rightAnswer = answer
-            }
-        }
+    private func useHallHelp() {
         isHallEnabled = false
-        return rightAnswer
     }
     
     // Func to use 50 percent help
