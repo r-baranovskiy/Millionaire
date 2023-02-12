@@ -22,6 +22,7 @@ final class StartViewController: UIViewController {
         self.whoWontLabel.colorString(text: "КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ", coloredText: "МИЛЛИОНЕРОМ")
         
         rulesButton.addTarget(self, action: #selector(rulesButtonPressed), for: .touchUpInside)
+        scoreButton.addTarget(self, action: #selector(scoreButtonPressed), for: .touchUpInside)
         startGameButton.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
 
         settingsButtons()
@@ -31,6 +32,12 @@ final class StartViewController: UIViewController {
     @objc
     private func rulesButtonPressed() {
         let vc = RulesViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    private func scoreButtonPressed() {
+        let vc = ScoreViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
