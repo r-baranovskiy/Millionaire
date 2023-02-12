@@ -91,7 +91,7 @@ class NicknameViewController: UIViewController {
     
     @objc
     private func buttonRegistrationPressed() {
-        if let text = userNameTextField.text, !text.isEmpty {
+        if (userNameTextField.text?.isEmpty)! {
             alertOkL(title: "Error", messege: "Please enter correct Name")
         } else {
             guard let username = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
