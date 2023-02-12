@@ -43,7 +43,7 @@ final class QuestionManager {
         currentQuestionIndex = 0
         currentTypeQuestion = .low
         isHallEnabled = true
-        isHallEnabled = true
+        isFiftyEnabled = true
         isPossibleErrorEnebled = true
         
         if currentTotalSum > 100 {
