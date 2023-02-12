@@ -1,7 +1,7 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-
+    
     private var durationTimer = 30
     private var possibleError: Bool = true
     private var isRepeatedAnswerAllowed: Bool = false
@@ -9,6 +9,7 @@ class QuestionViewController: UIViewController {
     private var currentTitleAnswerButton: String?
     private var tagButton: Int?
     private let questionManager = QuestionManager.shared
+    private let soundManager = SoundManager.shared
     
     private var gameTimer = Timer()
     private let aButton = CustomButton()
@@ -27,18 +28,22 @@ class QuestionViewController: UIViewController {
     private var hitButtonsStackView = UIStackView()
     private var answerButtonStackView = UIStackView()
     
-    private let timerLabel = UILabel(text: "⏱️ 30",
-                                     font: .systemFont(ofSize: 28, weight: .semibold),
-                                     textAlignment: .center,
-                                     color: .white)
-    private lazy var questionNumberLabel = UILabel(text: "Вопрос \(questionManager.currentNumberQuestion)",
-                                              font: .systemFont(ofSize: 28, weight: .semibold),
-                                              textAlignment: .center,
-                                              color: .white)
-    private lazy var questionCostLabel = UILabel(text: "💵 \(questionManager.currentQuestionCost)₽",
-                                              font: .systemFont(ofSize: 22, weight: .semibold),
-                                              textAlignment: .left,
-                                              color: .white)
+    private let timerLabel = UILabel(
+        text: "⏱️ 30", font: .systemFont(ofSize: 28, weight: .semibold),
+        textAlignment: .center, color: .white)
+    private lazy var questionNumberLabel = UILabel(
+        text: "Вопрос \(questionManager.currentNumberQuestion)",
+        font: .systemFont(ofSize: 28, weight: .semibold),
+        textAlignment: .center, color: .white)
+    private lazy var questionCostLabel = UILabel(
+        text: "💵 \(questionManager.currentQuestionCost)₽",
+        font: .systemFont(ofSize: 22, weight: .semibold),
+        textAlignment: .left, color: .white)
+    private lazy var questionLabel = UILabel(
+        text: "Здесь отображается вопрос",
+        font: .systemFont(ofSize: 16, weight: .regular),
+        textAlignment: .center, color: .white)
+    
     private lazy var backgroundQuestion: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 20
@@ -46,11 +51,7 @@ class QuestionViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    private lazy var questionLabel = UILabel(text: "Здесь отображается вопрос",
-                                             font: .systemFont(ofSize: 16, weight: .regular),
-                                             textAlignment: .center,
-                                             color: .white)
-
+    
     private func helpButton(name: String, action: Selector) -> UIButton {
         let button = UIButton()
         button.setImage(UIImage(named: name), for: .normal)
@@ -65,44 +66,49 @@ class QuestionViewController: UIViewController {
     private lazy var callFriendsButton = helpButton(name: "helpIcon3", action: #selector(callFriendsButtonAction))
     private lazy var noticeButton = helpButton(name: "helpIcon4", action: #selector(noticeButtonAction))
     
-// MARK: - viewDidLoad
+    // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.setGradientBackground(colorTop: .topBackgroundColor() ?? .black,
-                                   colorBottom: .bottomBackgroundColor() ?? .black)
-        aButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
-        bButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
-        cButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
-        dButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
-        
-        aButton.tag = 1
-        bButton.tag = 2
-        cButton.tag = 3
-        dButton.tag = 4
-        
-        startTimer()
-        updateQuestion()
-        updateStateButtons()
-        setupView()
-        setConstraints()
+        view.setGradientBackground(
+            colorTop: .topBackgroundColor() ?? .black,
+            colorBottom: .bottomBackgroundColor() ?? .black)
+        startGame()
+        loadMainLogo()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        durationTimer = 30
+    private func startGame() {
+        var delay = 0
+        if questionManager.isTheFirstGame {
+            delay = 12
+        } else {
+            delay = 0
+        }
+        
+        soundManager.playSound(sound: .startGame)
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(delay), repeats: false) { _ in
+            self.soundManager.stopSound()
+            self.soundManager.playSound(sound: .startGame)
+            self.setButtontargets()
+            self.startTimer()
+            self.updateQuestion()
+            self.updateStateButtons()
+            self.setupView()
+            self.setConstraints()
+            self.questionManager.isTheFirstGame = false
+            self.soundManager.stopSound()
+            self.soundManager.playSound(sound: .timerGame)
+        }
     }
     
-// MARK: - Timer
+    // MARK: - Timer
     
     private func startTimer() {
-        gameTimer = Timer.scheduledTimer(timeInterval: 1,
-                                         target: self,
-                                         selector: (#selector(updateTimer)),
-                                         userInfo: nil,
-                                         repeats: true)
+        gameTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self, selector: (#selector(updateTimer)),
+            userInfo: nil, repeats: true)
     }
-
+    
     @objc func updateTimer() {
         durationTimer -= 1
         timerLabel.text = "⏱️ \(durationTimer)"
@@ -114,8 +120,8 @@ class QuestionViewController: UIViewController {
             timerLabel.textColor = .red
         }
     }
- 
-//MARK: - Actions after answer did tap
+    
+    //MARK: - Actions after answer did tap
     
     @objc private func answerDidTap(_ button: CustomButton) {
         button.shake()
@@ -127,10 +133,8 @@ class QuestionViewController: UIViewController {
         currentTitleAnswerButton = button.currentTitle
         
         (fiftyButton.isEnabled, hallHelpButton.isEnabled, callFriendsButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
-        Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(checkAnswer), userInfo: nil, repeats: false)
-//        if correctAnswer.checkAnswer(buttonTag: button.tag) {
-//            updateQuestion()
-//        }
+        soundManager.stopSound()
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkAnswer), userInfo: nil, repeats: false)
     }
     
     @objc func checkAnswer() {
@@ -139,6 +143,7 @@ class QuestionViewController: UIViewController {
             if questionManager.checkAnswer(buttonTag: aButton.tag) {
                 aButton.backgroundColor = .green
                 updateInfoQuestion()
+                self.soundManager.playSound(sound: .rightAnswer)
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 aButton.backgroundColor = .red
@@ -153,6 +158,7 @@ class QuestionViewController: UIViewController {
             if questionManager.checkAnswer(buttonTag: bButton.tag) {
                 bButton.backgroundColor = .green
                 updateInfoQuestion()
+                self.soundManager.playSound(sound: .rightAnswer)
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 bButton.backgroundColor = .red
@@ -167,6 +173,7 @@ class QuestionViewController: UIViewController {
             if questionManager.checkAnswer(buttonTag: cButton.tag){
                 cButton.backgroundColor = .green
                 updateInfoQuestion()
+                self.soundManager.playSound(sound: .rightAnswer)
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 cButton.backgroundColor = .red
@@ -181,6 +188,7 @@ class QuestionViewController: UIViewController {
             if questionManager.checkAnswer(buttonTag: dButton.tag){
                 dButton.backgroundColor = .green
                 updateInfoQuestion()
+                self.soundManager.playSound(sound: .rightAnswer)
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
             } else {
                 dButton.backgroundColor = .red
@@ -194,7 +202,24 @@ class QuestionViewController: UIViewController {
         default:
             print("Error")
         }
-
+    }
+    
+    private func endGame() {
+        
+    }
+    
+    // MARK: - Appearance
+    
+    private func setButtontargets() {
+        aButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        bButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        cButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        dButton.addTarget(self, action: #selector(answerDidTap), for: .touchUpInside)
+        
+        aButton.tag = 1
+        bButton.tag = 2
+        cButton.tag = 3
+        dButton.tag = 4
     }
     
     private func updateInfoQuestion() {
@@ -205,7 +230,6 @@ class QuestionViewController: UIViewController {
         guard let currentQuestion = QuestionManager.shared.fetchNewQuestion() else {
             return
         }
-        
         guard let titleAButton = currentQuestion.answers.aAnswer.values.first,
               let titleBButton = currentQuestion.answers.bAnswer.values.first,
               let titleCButton = currentQuestion.answers.cAnswer.values.first,
@@ -226,7 +250,7 @@ class QuestionViewController: UIViewController {
         callFriendsButton.isEnabled = questionManager.isCallToFriendEnebled
         hallHelpButton.isEnabled = questionManager.isHallEnabled
     }
-        
+    
     private func handleButtons(){
         if possibleError {
             (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
@@ -245,8 +269,8 @@ class QuestionViewController: UIViewController {
         chartVC.numberOfQuestion = questionManager.currentNumberQuestion
         navigationController?.pushViewController(chartVC, animated: true)
     }
-
-// MARK: - Help Buttons action
+    
+    // MARK: - Help Buttons action
     
     @objc func fiftyButtonAction() {
         questionManager.userHelp(typeOfHelp: .fifty)
@@ -254,9 +278,7 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func hallHelpButtonAction() {
-            showInfoHelpHall()
-//            hallHelpButton.setImage(UIImage(named: ""), for: .normal)
-        
+        showInfoHelpHall()
         questionManager.userHelp(typeOfHelp: .hall)
         updateStateButtons()
     }
@@ -279,12 +301,12 @@ class QuestionViewController: UIViewController {
         print("Заметки")
     }
     
-// MARK: - Alerts
+    // MARK: - Alerts
     
     func showAlertEndOfTime() {
         let alert = UIAlertController(
             title: "ВРЕМЯ ВЫШЛО",
-            message: "Ваш выигрыш составил...",
+            message: "Ваш выигрыш составил \(questionManager.currentQuestionCost)",
             preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "ВЫЙТИ", style: .cancel, handler: { event in
@@ -310,45 +332,47 @@ class QuestionViewController: UIViewController {
     }
 }
 
-
 extension QuestionViewController {
-
-// MARK: - Setup Views
+    
+    // MARK: - Setup Views
     
     private func setupView() {
-        
         hitButtonsStackView = UIStackView(
             subviews: [fiftyButton, hallHelpButton, timerLabel, callFriendsButton, noticeButton],
-            axis: .horizontal,
-            spacing: 15,
-            aligment: .center,
-            distribution: .fillEqually
+            axis: .horizontal, spacing: 15, aligment: .center, distribution: .fillEqually
         )
         
-        answerButtonStackView = UIStackView(subviews: [aButton, bButton, cButton, dButton],
-                                            axis: .vertical,
-                                            spacing: 10,
-                                            aligment: .fill,
-                                            distribution: .fillEqually)
+        answerButtonStackView = UIStackView(
+            subviews: [aButton, bButton, cButton, dButton],
+            axis: .vertical, spacing: 10, aligment: .fill, distribution: .fillEqually)
     }
     
-// MARK: - Set constraints
-
+    // MARK: - Set constraints
+    
+    private func loadMainLogo() {
+        view.addSubview(mainLogo)
+        mainLogo.alpha = 0
+        NSLayoutConstraint.activate([
+            mainLogo.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            mainLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mainLogo.widthAnchor.constraint(equalToConstant: 158),
+            mainLogo.heightAnchor.constraint(equalToConstant: 158),
+        ])
+        let time = questionManager.isTheFirstGame ? 8 : 0
+        UIView.animate(withDuration: TimeInterval(time)) {
+            self.mainLogo.alpha = 1
+        }
+    }
+    
     private func setConstraints() {
-        self.view.addSubview(mainLogo)
         self.view.addSubview(hitButtonsStackView)
         self.view.addSubview(questionNumberLabel)
         self.view.addSubview(questionCostLabel)
         self.view.addSubview(backgroundQuestion)
         backgroundQuestion.addSubview(questionLabel)
         self.view.addSubview(answerButtonStackView)
-
         
         NSLayoutConstraint.activate([
-            mainLogo.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-            mainLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            mainLogo.widthAnchor.constraint(equalToConstant: 158),
-            mainLogo.heightAnchor.constraint(equalToConstant: 158),
             
             timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             

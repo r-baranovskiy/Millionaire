@@ -11,6 +11,7 @@ final class QuestionManager {
         case callToFriend
     }
     
+    var isTheFirstGame = true
     private (set) var currentQuestion: Question?
     private (set) var currentNumberQuestion = 0
     private (set) var currentQuestionCost = 100
