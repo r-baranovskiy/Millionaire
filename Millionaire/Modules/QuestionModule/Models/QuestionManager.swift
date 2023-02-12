@@ -8,7 +8,7 @@ final class QuestionManager {
     enum HelpType {
         case fifty
         case hall
-        case callToFriend
+        case possibleError
     }
     
     var isTheFirstGame = true
@@ -32,7 +32,7 @@ final class QuestionManager {
     //States for help buttons
     private (set) var isFiftyEnabled: Bool = true
     private (set) var isHallEnabled: Bool = true
-    private (set) var isCallToFriendEnebled: Bool = true
+    private (set) var isPossibleErrorEnebled: Bool = true
     
     func newGame() {
         lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
@@ -45,7 +45,7 @@ final class QuestionManager {
         currentTypeQuestion = .low
         isHallEnabled = true
         isHallEnabled = true
-        isCallToFriendEnebled = true
+        isPossibleErrorEnebled = true
         
         if currentTotalSum > 100 {
             let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
@@ -62,15 +62,15 @@ final class QuestionManager {
             useFiftyHelp()
         case .hall:
             useHallHelp()
-        case .callToFriend:
-            useCallToFriend()
+        case .possibleError:
+            usePossibleError()
         }
     }
     
     // Func to use callToFriend help
-    private func useCallToFriend() {
+    private func usePossibleError() {
         guard let currentQuestion = currentQuestion,
-              isCallToFriendEnebled else {
+              isPossibleErrorEnebled else {
             return
         }
         
@@ -88,7 +88,7 @@ final class QuestionManager {
                 }
             }
         }
-        isCallToFriendEnebled = false
+        isPossibleErrorEnebled = false
     }
     
     // Func to use hall help
