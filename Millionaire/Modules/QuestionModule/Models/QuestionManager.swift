@@ -47,7 +47,7 @@ final class QuestionManager {
         isHallEnabled = true
         isCallToFriendEnebled = true
         
-        if currentTotalSum > 0 {
+        if currentTotalSum > 100 {
             let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
             ScoreManager.shared.create(score: score)
         }

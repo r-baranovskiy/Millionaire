@@ -15,7 +15,7 @@ final class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        QuestionManager.shared.newGame()
         self.view.backgroundColor = .black
         SoundManager.shared.playSound(sound: .startApp)
         
