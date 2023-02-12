@@ -6,7 +6,6 @@ final class QuestionManager {
     static let shared = QuestionManager()
     
     enum HelpType {
-        case fifty
         case hall
         case possibleError
     }
@@ -58,8 +57,6 @@ final class QuestionManager {
     
     func userHelp(typeOfHelp: HelpType) {
         switch typeOfHelp {
-        case .fifty:
-            useFiftyHelp()
         case .hall:
             useHallHelp()
         case .possibleError:
@@ -97,7 +94,7 @@ final class QuestionManager {
     }
     
     // Func to use 50 percent help
-    private func useFiftyHelp() -> [Int]? {
+    func useFiftyHelp() -> [Int]? {
         guard let currentQuestion = currentQuestion,
               isFiftyEnabled else {
             return nil

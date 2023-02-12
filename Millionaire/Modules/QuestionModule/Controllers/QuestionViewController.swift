@@ -233,7 +233,24 @@ class QuestionViewController: UIViewController {
     // MARK: - Help Buttons action
     
     @objc func fiftyButtonAction() {
-        questionManager.userHelp(typeOfHelp: .fifty)
+        let array = questionManager.useFiftyHelp()
+        
+        if let fiftyTags = array?.shuffled().dropLast() {
+            for fiftyTag in fiftyTags {
+                switch fiftyTag {
+                case 1:
+                    print("Button 1")
+                case 2:
+                    print("Button 2")
+                case 3:
+                    print("Button 3")
+                case 4:
+                    print("Button 4")
+                default:
+                    break
+                }
+            }
+        }
         updateStateButtons()
     }
     
