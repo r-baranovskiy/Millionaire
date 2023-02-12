@@ -89,7 +89,7 @@ class NicknameViewController: UIViewController {
         
         let vc = QuestionViewController()
         SoundManager.shared.stopSound()
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
 	
 	func setBackground() {

@@ -93,9 +93,10 @@ final class ChartViewController: UIViewController {
     }
     
     private func goBack() {
-        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
             let previousVC = QuestionViewController()
-            self.navigationController?.pushViewController(previousVC, animated: true)
+            SoundManager.shared.stopSound()
+            self.navigationController?.pushViewController(previousVC, animated: false)
         }
     }
     
