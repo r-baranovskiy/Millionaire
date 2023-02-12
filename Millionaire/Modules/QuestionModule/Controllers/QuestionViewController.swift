@@ -156,71 +156,6 @@ class QuestionViewController: UIViewController {
             soundManager.playSound(sound: .failAnswer)
             endGame()
         }
-        
-//        switch tag {
-//        case 1:
-//            if questionManager.checkAnswer(buttonTag: aButton.tag) {
-//                aButton.backgroundColor = .green
-//                updateInfoQuestion()
-//                self.soundManager.playSound(sound: .rightAnswer)
-//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-//            } else {
-//                aButton.backgroundColor = .red
-//                if !answeredSecondTime && !possibleError{
-//                    startTimer()
-//                }
-//                if possibleError || (!possibleError && answeredSecondTime){
-//                    showAlertWrongAnswer()
-//                }
-//            }
-//        case 2:
-//            if questionManager.checkAnswer(buttonTag: bButton.tag) {
-//                bButton.backgroundColor = .green
-//                updateInfoQuestion()
-//                self.soundManager.playSound(sound: .rightAnswer)
-//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-//            } else {
-//                bButton.backgroundColor = .red
-//                if !answeredSecondTime && !possibleError{
-//                    startTimer()
-//                }
-//                if possibleError || (!possibleError && answeredSecondTime){
-//                    showAlertWrongAnswer()
-//                }
-//            }
-//        case 3:
-//            if questionManager.checkAnswer(buttonTag: cButton.tag){
-//                cButton.backgroundColor = .green
-//                updateInfoQuestion()
-//                self.soundManager.playSound(sound: .rightAnswer)
-//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-//            } else {
-//                cButton.backgroundColor = .red
-//                if !answeredSecondTime && !possibleError{
-//                    startTimer()
-//                }
-//                if possibleError || (!possibleError && answeredSecondTime){
-//                    showAlertWrongAnswer()
-//                }
-//            }
-//        case 4:
-//            if questionManager.checkAnswer(buttonTag: dButton.tag){
-//                dButton.backgroundColor = .green
-//                updateInfoQuestion()
-//                self.soundManager.playSound(sound: .rightAnswer)
-//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(goToChartViewController), userInfo: nil, repeats: false)
-//            } else {
-//                dButton.backgroundColor = .red
-//                if !answeredSecondTime && !possibleError{
-//                    startTimer()
-//                }
-//                if possibleError || (!possibleError && answeredSecondTime){
-//                    showAlertWrongAnswer()
-//                }
-//            }
-//        default:
-//            print("Error")
-//        }
     }
     
     private func endGame() {
@@ -298,18 +233,20 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func hallHelpButtonAction() {
-        showInfoHelpHall()
         questionManager.userHelp(typeOfHelp: .hall)
+        let tagOfRightButton = questionManager.checkAnswer()
+        
+        if tagOfRightButton == aButton.tag {
+            aButton.buttonUnpressed()
+        } else if tagOfRightButton == bButton.tag {
+            bButton.buttonUnpressed()
+        } else if tagOfRightButton == cButton.tag {
+            cButton.buttonUnpressed()
+        } else if tagOfRightButton == dButton.tag {
+            dButton.buttonUnpressed()
+        }
+        
         updateStateButtons()
-    }
-    
-    func showInfoHelpHall() {
-        let alert = UIAlertController(title: "Результат опроса зала",
-                                      message: "Большинство зала за вариант...",
-                                      preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
     
     @objc func callFriendsButtonAction() {
