@@ -239,13 +239,13 @@ class QuestionViewController: UIViewController {
             for fiftyTag in fiftyTags {
                 switch fiftyTag {
                 case 1:
-                    print("Button 1")
+                    aButton.setTitle("", for: .normal)
                 case 2:
-                    print("Button 2")
+                    bButton.setTitle("", for: .normal)
                 case 3:
-                    print("Button 3")
+                    cButton.setTitle("", for: .normal)
                 case 4:
-                    print("Button 4")
+                    dButton.setTitle("", for: .normal)
                 default:
                     break
                 }
@@ -294,9 +294,7 @@ class QuestionViewController: UIViewController {
             preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "ВЫЙТИ", style: .cancel, handler: { event in
-            if let navigator = self.navigationController {
-                navigator.pushViewController(ChartViewController(), animated: true)
-            }
+            self.endGame()
         }))
         self.present(alert, animated: true)
     }
