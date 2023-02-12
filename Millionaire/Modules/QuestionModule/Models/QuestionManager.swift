@@ -97,26 +97,23 @@ final class QuestionManager {
     }
     
     // Func to use 50 percent help
-    private func useFiftyHelp() {
+    private func useFiftyHelp() -> [Int]? {
         guard let currentQuestion = currentQuestion,
               isFiftyEnabled else {
-            return
+            return nil
         }
-        var answers: [[Bool:String]] = []
+        var tags = [Int]()
         
         let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
-                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer].shuffled()
+                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer]
         
-        for answer in currentAnswers {
-            if answer[true] != nil {
-                answers.append(answer)
-            } else {
-                while answers.count < countOfAnswersInQuestion / 2 {
-                    answers.append(answer)
-                }
+        for (i, answer) in currentAnswers.enumerated() {
+            if answer[true] == nil {
+                tags.append(i + 1)
             }
         }
         isFiftyEnabled = false
+        return tags
     }
     
     // MARK: - Questions
