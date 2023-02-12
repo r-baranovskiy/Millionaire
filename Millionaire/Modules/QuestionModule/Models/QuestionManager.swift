@@ -8,7 +8,7 @@ final class QuestionManager {
     enum HelpType {
         case fifty
         case hall
-        case callToFriend
+        case possibleError
     }
     
     var isTheFirstGame = true
@@ -32,7 +32,7 @@ final class QuestionManager {
     //States for help buttons
     private (set) var isFiftyEnabled: Bool = true
     private (set) var isHallEnabled: Bool = true
-    private (set) var isCallToFriendEnebled: Bool = true
+    private (set) var isPossibleErrorEnebled: Bool = true
     
     func newGame() {
         lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
@@ -45,13 +45,12 @@ final class QuestionManager {
         currentTypeQuestion = .low
         isHallEnabled = true
         isHallEnabled = true
-        isCallToFriendEnebled = true
+        isPossibleErrorEnebled = true
         
-        if currentTotalSum > 0 {
+        if currentTotalSum > 100 {
             let score = ScoreModel(name: currentUsername, sum: currentTotalSum)
             ScoreManager.shared.create(score: score)
         }
-        
         currentTotalSum = 0
     }
     
@@ -63,15 +62,15 @@ final class QuestionManager {
             useFiftyHelp()
         case .hall:
             useHallHelp()
-        case .callToFriend:
-            useCallToFriend()
+        case .possibleError:
+            usePossibleError()
         }
     }
     
     // Func to use callToFriend help
-    private func useCallToFriend() {
+    private func usePossibleError() {
         guard let currentQuestion = currentQuestion,
-              isCallToFriendEnebled else {
+              isPossibleErrorEnebled else {
             return
         }
         
@@ -89,7 +88,7 @@ final class QuestionManager {
                 }
             }
         }
-        isCallToFriendEnebled = false
+        isPossibleErrorEnebled = false
     }
     
     // Func to use hall help
@@ -98,26 +97,23 @@ final class QuestionManager {
     }
     
     // Func to use 50 percent help
-    private func useFiftyHelp() {
+    private func useFiftyHelp() -> [Int]? {
         guard let currentQuestion = currentQuestion,
               isFiftyEnabled else {
-            return
+            return nil
         }
-        var answers: [[Bool:String]] = []
+        var tags = [Int]()
         
         let currentAnswers = [currentQuestion.answers.aAnswer, currentQuestion.answers.bAnswer,
-                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer].shuffled()
+                              currentQuestion.answers.cAnswer, currentQuestion.answers.dAnswer]
         
-        for answer in currentAnswers {
-            if answer[true] != nil {
-                answers.append(answer)
-            } else {
-                while answers.count < countOfAnswersInQuestion / 2 {
-                    answers.append(answer)
-                }
+        for (i, answer) in currentAnswers.enumerated() {
+            if answer[true] == nil {
+                tags.append(i + 1)
             }
         }
         isFiftyEnabled = false
+        return tags
     }
     
     // MARK: - Questions

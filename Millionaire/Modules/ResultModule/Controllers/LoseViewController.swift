@@ -37,6 +37,7 @@ final class LoseViewController: UIViewController {
     @objc
     private func scoreButtonPressed() {
         let vc = ScoreViewController()
+        QuestionManager.shared.newGame()
         navigationController?.pushViewController(vc, animated: false)
     }
 }

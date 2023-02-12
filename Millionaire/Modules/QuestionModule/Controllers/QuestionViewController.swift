@@ -4,8 +4,8 @@ class QuestionViewController: UIViewController {
     
     private var durationTimer = 30
     private var possibleError: Bool = true
-    private var isRepeatedAnswerAllowed: Bool = false
     private var answeredSecondTime: Bool = false
+    private var isRepeatedAnswerAllowed: Bool = false
     private var currentTitleAnswerButton: String?
     private let questionManager = QuestionManager.shared
     private let soundManager = SoundManager.shared
@@ -62,7 +62,7 @@ class QuestionViewController: UIViewController {
     
     private lazy var fiftyButton = helpButton(name: "helpIcon1", action: #selector(fiftyButtonAction))
     private lazy var hallHelpButton = helpButton(name: "helpIcon2", action: #selector(hallHelpButtonAction))
-    private lazy var callFriendsButton = helpButton(name: "helpIcon3", action: #selector(callFriendsButtonAction))
+    private lazy var possibleErrorButton = helpButton(name: "helpIcon3", action: #selector(possibleErrorButtonAction))
     private lazy var noticeButton = helpButton(name: "helpIcon4", action: #selector(noticeButtonAction))
     
     // MARK: - viewDidLoad
@@ -130,7 +130,7 @@ class QuestionViewController: UIViewController {
         gameTimer.invalidate()
         currentTitleAnswerButton = button.currentTitle
         
-        (fiftyButton.isEnabled, hallHelpButton.isEnabled, callFriendsButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
+        (fiftyButton.isEnabled, hallHelpButton.isEnabled, possibleErrorButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
         soundManager.stopSound()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
             self.checkAnswer(button: button)
@@ -153,8 +153,13 @@ class QuestionViewController: UIViewController {
             goToChartViewController()
         } else {
             button.backgroundColor = .red
-            soundManager.playSound(sound: .failAnswer)
-            endGame()
+            if !answeredSecondTime && !possibleError {
+                startTimer()
+            }
+            if possibleError || (!possibleError && answeredSecondTime){
+                soundManager.playSound(sound: .failAnswer)
+                endGame()
+            }
         }
     }
     
@@ -202,7 +207,7 @@ class QuestionViewController: UIViewController {
     
     private func updateStateButtons() {
         fiftyButton.isEnabled = questionManager.isFiftyEnabled
-        callFriendsButton.isEnabled = questionManager.isCallToFriendEnebled
+        possibleErrorButton.isEnabled = questionManager.isPossibleErrorEnebled
         hallHelpButton.isEnabled = questionManager.isHallEnabled
     }
     
@@ -249,8 +254,13 @@ class QuestionViewController: UIViewController {
         updateStateButtons()
     }
     
-    @objc func callFriendsButtonAction() {
-        questionManager.userHelp(typeOfHelp: .callToFriend)
+    @objc func possibleErrorButtonAction() {
+        questionManager.userHelp(typeOfHelp: .possibleError)
+        if possibleError {
+            possibleError = false
+            isRepeatedAnswerAllowed = true
+        }
+        
         updateStateButtons()
     }
     
@@ -273,20 +283,6 @@ class QuestionViewController: UIViewController {
         }))
         self.present(alert, animated: true)
     }
-    
-    func showAlertWrongAnswer() {
-        let alert = UIAlertController(
-            title: "НЕПРАВИЛЬНО",
-            message: "попробуем в другой раз",
-            preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "ВЫЙТИ", style: .cancel, handler: { event in
-            if let navigator = self.navigationController {
-                navigator.pushViewController(ChartViewController(), animated: true)
-            }
-        }))
-        self.present(alert, animated: true)
-    }
 }
 
 extension QuestionViewController {
@@ -295,7 +291,7 @@ extension QuestionViewController {
     
     private func setupView() {
         hitButtonsStackView = UIStackView(
-            subviews: [fiftyButton, hallHelpButton, timerLabel, callFriendsButton, noticeButton],
+            subviews: [fiftyButton, hallHelpButton, timerLabel, possibleErrorButton, noticeButton],
             axis: .horizontal, spacing: 15, aligment: .center, distribution: .fillEqually
         )
         

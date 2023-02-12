@@ -12,8 +12,8 @@ final class ChartViewController: UIViewController {
         return imageLogo
     }()
     
-    lazy var takeMoney = naviButton(title: "Забрать деньги", action: #selector(takeMoneyAction))
-    lazy var goAhead = naviButton(title: "Далее", action: #selector(goAheadAction))
+//    lazy var takeMoney = naviButton(title: "Забрать деньги", action: #selector(takeMoneyAction))
+//    lazy var goAhead = naviButton(title: "Далее", action: #selector(goAheadAction))
     
     lazy var fiftyHelpButton = helpButton(name: "helpIcon1", action: #selector(fiftyHelpButtonAction))
     lazy var hallHelpButton = helpButton(name: "helpIcon2", action: #selector(hallHelpButtonAction))
@@ -88,8 +88,8 @@ final class ChartViewController: UIViewController {
         questionAndRewardStack = UIStackView(subviews: [view15, view14, view13, view12, view11, view10, view9, view8, view7, view6, view5, view4, view3, view2, view1], axis: .vertical, spacing: 7, aligment: .fill, distribution: .fillEqually)
             self.view.addSubview(questionAndRewardStack)
         
-        self.view.addSubview(goAhead)
-        self.view.addSubview(takeMoney)
+//        self.view.addSubview(goAhead)
+//        self.view.addSubview(takeMoney)
     }
     
     private func goBack() {
@@ -218,15 +218,15 @@ final class ChartViewController: UIViewController {
             questionAndRewardStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             questionAndRewardStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
             
-            goAhead.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            goAhead.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            goAhead.widthAnchor.constraint(equalToConstant: 100),
-            goAhead.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
-            
-            takeMoney.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            takeMoney.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            takeMoney.widthAnchor.constraint(equalToConstant: 150),
-            takeMoney.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
+//            goAhead.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            goAhead.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+//            goAhead.widthAnchor.constraint(equalToConstant: 100),
+//            goAhead.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
+//            
+//            takeMoney.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+//            takeMoney.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+//            takeMoney.widthAnchor.constraint(equalToConstant: 150),
+//            takeMoney.topAnchor.constraint(equalTo: questionAndRewardStack.bottomAnchor, constant: 20),
         ])
     }
 }
