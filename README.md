@@ -32,7 +32,7 @@
 
 ![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/gif2.gif?raw=true)
 
-![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/gif1.gif?raw=true)
+![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/gif3.gif?raw=true)
 
 
 
