@@ -17,9 +17,7 @@ final class CustomTextField: UITextField {
 	}
 }
 class NicknameViewController: UIViewController {
-    
-    var scoreManager = ScoreManager.shared
-	
+    	
 	let logoView: UIImageView = {
 		let logoImage = UIImageView()
 		logoImage.image = UIImage(named: "logoLarge")
@@ -92,8 +90,7 @@ class NicknameViewController: UIViewController {
     @objc
     private func buttonRegistrationPressed() {
         guard let username = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-        let score = ScoreModel(name: username)
-        scoreManager.create(score: score)
+        QuestionManager.shared.currentUsername = username
         
         let vc = QuestionViewController()
         SoundManager.shared.stopSound()
