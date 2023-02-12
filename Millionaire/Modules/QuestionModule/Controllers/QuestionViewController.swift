@@ -154,6 +154,7 @@ class QuestionViewController: UIViewController {
         } else {
             button.backgroundColor = .red
             soundManager.playSound(sound: .failAnswer)
+            endGame()
         }
         
 //        switch tag {
@@ -223,7 +224,8 @@ class QuestionViewController: UIViewController {
     }
     
     private func endGame() {
-        
+        let loseVC = LoseViewController()
+        navigationController?.pushViewController(loseVC, animated: false)
     }
     
     // MARK: - Appearance

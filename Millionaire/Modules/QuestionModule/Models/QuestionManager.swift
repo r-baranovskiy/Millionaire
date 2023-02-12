@@ -11,25 +11,40 @@ final class QuestionManager {
         case callToFriend
     }
     
+    private var lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
+    private var mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
+    private var hardQuestions = QuestionDataBase.shared.fetchRandomHardQuestions()
+    
     var isTheFirstGame = true
+    
     private (set) var currentQuestion: Question?
     private (set) var currentNumberQuestion = 0
     private (set) var currentQuestionCost = 100
+    
+    private let totalQuestions = 15
+    private let countOfAnswersInQuestion = 4
+    private var currentQuestionIndex = 0
+    
+    private var currentTypeQuestion: QuestionType = .low
     
     //States for help buttons
     private (set) var isFiftyEnabled: Bool = true
     private (set) var isHallEnabled: Bool = true
     private (set) var isCallToFriendEnebled: Bool = true
     
-    private let totalQuestions = 15
-    private let countOfAnswersInQuestion = 4
-    
-    private let lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
-    private let mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
-    private let hardQuestions = QuestionDataBase.shared.fetchRandomHardQuestions()
-    
-    private var currentQuestionIndex = 0
-    private var currentTypeQuestion: QuestionType = .low
+    func newGame() {
+        lowQuestions = QuestionDataBase.shared.fetchRandomLowQuestions()
+        mediumQuestions = QuestionDataBase.shared.fetchRandomMediumQuestions()
+        hardQuestions = QuestionDataBase.shared.fetchRandomHardQuestions()
+        
+        currentNumberQuestion = 0
+        currentQuestionCost = 100
+        currentQuestionIndex = 0
+        currentTypeQuestion = .low
+        isHallEnabled = true
+        isHallEnabled = true
+        isCallToFriendEnebled = true
+    }
     
     // MARK: - Help
     
@@ -47,7 +62,7 @@ final class QuestionManager {
     // Func to use callToFriend help
     private func useCallToFriend() {
         guard let currentQuestion = currentQuestion,
-        isCallToFriendEnebled else {
+              isCallToFriendEnebled else {
             return
         }
         
@@ -71,7 +86,7 @@ final class QuestionManager {
     // Func to use hall help
     private func useHallHelp() -> [Bool: String]? {
         guard let currentQuestion = currentQuestion,
-        isHallEnabled else {
+              isHallEnabled else {
             return nil
         }
         
@@ -92,7 +107,7 @@ final class QuestionManager {
     // Func to use 50 percent help
     private func useFiftyHelp() {
         guard let currentQuestion = currentQuestion,
-        isFiftyEnabled else {
+              isFiftyEnabled else {
             return
         }
         var answers: [[Bool:String]] = []
@@ -131,23 +146,9 @@ final class QuestionManager {
         } else {
             return 4
         }
-//        switch buttonTag {
-//        case 1:
-//            if currentQuestion?.answers.aAnswer[true] != nil {
-//                return 1
-//            }
-//            return currentQuestion?.answers.aAnswer[true] != nil ? true : false
-//        case 2:
-//            return currentQuestion?.answers.bAnswer[true] != nil ? true : false
-//        case 3:
-//            return currentQuestion?.answers.cAnswer[true] != nil ? true : false
-//        case 4:
-//            return currentQuestion?.answers.dAnswer[true] != nil ? true : false
-//        default:
-//            return false
-//        }
     }
     
+    //
     private func updateCurrentQuestionCost(numberOrQuestion: Int) {
         switch numberOrQuestion {
         case 1:

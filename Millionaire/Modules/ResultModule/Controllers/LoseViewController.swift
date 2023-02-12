@@ -14,17 +14,21 @@ final class LoseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         playAgainButton.setTitle("играть еще раз", for: .normal)
-        
         playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .touchUpInside)
-        
+        configureAppearance()
         setConstraints()
+    }
+    
+    func configureAppearance() {
+        //SoundManager.shared.stopSound()
+        yourWinnings.text = "Ваш выигрыш: \(QuestionManager.shared.currentQuestionCost)"
     }
     
     @objc
     private func playAgainButtonPressed() {
-        // code
+        QuestionManager.shared.newGame()
+        navigationController?.popToRootViewController(animated: false)
     }
 }
 
