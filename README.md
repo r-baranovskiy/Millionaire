@@ -1,19 +1,41 @@
-# Игра "Кто хочет стать миллионером"
 
-<div id="mainscreen" align="center">
-<img src = "https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/StartScreen.PNG" width="200"/>
-</div>
+![Logo](https://i.ibb.co/202dYxy/2023-02-12-13-59-49.png)
 
-### Прилоежние было создано в рамках челленджа от SwiftMarathon командой из:
 
-* [Татьяна](https://github.com/TatynaMTV)
+# Кто хочет стать миллионером
 
-* [Карим](https://github.com/jaanatape)
+Описание функционала приложения, созданного Командой №17 в рамках учебного марафона [Swift Marathon](https://t.me/swiftmarathon)
 
-* [Ян](https://github.com/YanShvind)
 
-* [Егор](https://github.com/SHegor74)
+## Участники команды
 
-### И тимлид проекта:
+- [Татьяна](https://github.com/TatynaMTV)
+- [Карим](https://github.com/jaanatape)
+- [Ян](https://github.com/YanShvind)
+- [Егор](https://github.com/SHegor74)
+- [Руслан - Team Lead](https://github.com/r-baranovskiy)
 
-* [Руслан](https://github.com/r-baranovskiy)
+
+
+
+
+## Фичи проекта
+
+- Кастомный дизайн
+- Регистрация пользователя
+- Сохранение результатов игры в файловый менеджер
+- Общий рейтинг между результатами пользователей
+- Удобная модель управления вопросами с разным уровнем сложности и без ограничений по количеству
+
+
+## Интерфейс
+
+![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/gif2.gif?raw=true)
+
+![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/gif1.gif?raw=true)
+
+
+
+
+
+
