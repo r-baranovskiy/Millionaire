@@ -11,11 +11,14 @@ final class LoseViewController: UIViewController {
     private let loseImageView = UIImageView(image: UIImage(named: "loseResultIcon")!, contentMode: .scaleAspectFit)
     
     private let playAgainButton = CustomButton()
+    private let scoreButton = CustomButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         playAgainButton.setTitle("играть еще раз", for: .normal)
+        scoreButton.setTitle("рейтинг", for: .normal)
         playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .touchUpInside)
+        scoreButton.addTarget(self, action: #selector(scoreButtonPressed), for: .touchUpInside)
         configureAppearance()
         setConstraints()
     }
@@ -30,6 +33,12 @@ final class LoseViewController: UIViewController {
         QuestionManager.shared.newGame()
         navigationController?.popToRootViewController(animated: false)
     }
+    
+    @objc
+    private func scoreButtonPressed() {
+        let vc = ScoreViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
 }
 
 // MARK: - LoseViewControllerConstraints
@@ -41,6 +50,7 @@ extension LoseViewController {
         self.view.addSubview(yourWinnings)
         self.view.addSubview(loseImageView)
         self.view.addSubview(playAgainButton)
+        self.view.addSubview(scoreButton)
         
         NSLayoutConstraint.activate([
             gradientlayer.topAnchor.constraint(equalTo: view.topAnchor),
@@ -71,7 +81,12 @@ extension LoseViewController {
             playAgainButton.topAnchor.constraint(equalTo: loseImageView.bottomAnchor, constant: 20),
             playAgainButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
             playAgainButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            playAgainButton.heightAnchor.constraint(equalToConstant: 60)
+            playAgainButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            scoreButton.topAnchor.constraint(equalTo: playAgainButton.bottomAnchor, constant: 7),
+            scoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            scoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            scoreButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
