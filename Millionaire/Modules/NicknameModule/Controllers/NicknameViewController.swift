@@ -96,7 +96,6 @@ class NicknameViewController: UIViewController {
             QuestionManager.shared.currentUsername = username
             
             let vc = QuestionViewController()
-            SoundManager.shared.stopSound()
             navigationController?.pushViewController(vc, animated: false)
         }
     }

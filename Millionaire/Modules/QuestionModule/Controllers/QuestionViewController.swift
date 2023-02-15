@@ -79,14 +79,13 @@ class QuestionViewController: UIViewController {
     private func startGame() {
         var delay = 0
         if questionManager.isTheFirstGame {
-            delay = 12
+            delay = 5
         } else {
             delay = 0
         }
         
         soundManager.playSound(sound: .startGame)
         Timer.scheduledTimer(withTimeInterval: TimeInterval(delay), repeats: false) { _ in
-            self.soundManager.stopSound()
             self.soundManager.playSound(sound: .startGame)
             self.setButtontargets()
             self.startTimer()
@@ -95,7 +94,6 @@ class QuestionViewController: UIViewController {
             self.setupView()
             self.setConstraints()
             self.questionManager.isTheFirstGame = false
-            self.soundManager.stopSound()
             self.soundManager.playSound(sound: .timerGame)
         }
     }
@@ -120,7 +118,7 @@ class QuestionViewController: UIViewController {
         }
     }
     
-    //MARK: - Actions after answer did tap
+    //MARK: - Buttons Behaviour
     
     @objc private func answerDidTap(_ button: CustomButton) {
         button.shake()
@@ -129,10 +127,9 @@ class QuestionViewController: UIViewController {
         handleButtons()
         gameTimer.invalidate()
         currentTitleAnswerButton = button.currentTitle
-        
+        soundManager.playSound(sound: .asnwerDidSelected)
         (fiftyButton.isEnabled, hallHelpButton.isEnabled, possibleErrorButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
-        soundManager.stopSound()
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
             self.checkAnswer(button: button)
         }
     }
@@ -235,7 +232,7 @@ class QuestionViewController: UIViewController {
     
     @objc func fiftyButtonAction() {
         let array = questionManager.useFiftyHelp()
-        
+        soundManager.playHelpSound(helpSound: .fiftyHelpSound)
         if let fiftyTags = array?.shuffled().dropLast() {
             for fiftyTag in fiftyTags {
                 switch fiftyTag {
@@ -273,13 +270,15 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func possibleErrorButtonAction() {
+        soundManager.playHelpSound(helpSound: .possibleErrorSound)
         questionManager.userHelp(typeOfHelp: .possibleError)
         if possibleError {
             possibleError = false
             isRepeatedAnswerAllowed = true
         }
-        
-        updateStateButtons()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.updateStateButtons()
+        }
     }
     
     @objc func noticeButtonAction() {
@@ -288,7 +287,6 @@ class QuestionViewController: UIViewController {
         let okAction = UIAlertAction(title: "Да", style: .default) { _ in
             QuestionManager.shared.safeMoney()
             self.questionManager.newGame()
-            self.soundManager.stopSound()
             self.navigationController?.popToRootViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
@@ -338,7 +336,7 @@ extension QuestionViewController {
             mainLogo.widthAnchor.constraint(equalToConstant: 158),
             mainLogo.heightAnchor.constraint(equalToConstant: 158),
         ])
-        let time = questionManager.isTheFirstGame ? 12 : 0
+        let time = questionManager.isTheFirstGame ? 4 : 0
         UIView.animate(withDuration: TimeInterval(time)) {
             self.mainLogo.alpha = 1
         }

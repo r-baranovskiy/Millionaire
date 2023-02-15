@@ -3,15 +3,19 @@ import UIKit
 
 final class StartViewController: UIViewController {
     
-    private let gradientlayer = UIImageView(image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
-    private let mainLogo = UIImageView(image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
+    private let gradientlayer = UIImageView(
+        image: UIImage(named: "backgroundBlue")!, contentMode: .scaleAspectFill)
+    private let mainLogo = UIImageView(
+        image: UIImage(named: "logoLarge")!, contentMode: .scaleAspectFit)
     
-    private let welcomeLabel = UILabel(text: "добро пожаловать в игру", font: UIFont.systemFont(ofSize: 22))
-    private let whoWontLabel = UILabel(text: "", font: UIFont.systemFont(ofSize: 28, weight: .bold))
+    private let welcomeLabel = UILabel(
+        text: "добро пожаловать в игру", font: UIFont.systemFont(ofSize: 22))
+    private let whoWontLabel = UILabel(
+        text: "", font: UIFont.systemFont(ofSize: 28, weight: .bold))
     
-    private let rulesButton = CustomButton()
-    private let scoreButton = CustomButton()
-    private let startGameButton = CustomButton()
+    private let rulesButton = CustomButton(type: .system)
+    private let scoreButton = CustomButton(type: .system)
+    private let startGameButton = CustomButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +23,15 @@ final class StartViewController: UIViewController {
         self.view.backgroundColor = .black
         SoundManager.shared.playSound(sound: .startApp)
         
-        self.whoWontLabel.colorString(text: "КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ", coloredText: "МИЛЛИОНЕРОМ")
+        self.whoWontLabel.colorString(
+            text: "КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ", coloredText: "МИЛЛИОНЕРОМ")
         
-        rulesButton.addTarget(self, action: #selector(rulesButtonPressed), for: .touchUpInside)
-        scoreButton.addTarget(self, action: #selector(scoreButtonPressed), for: .touchUpInside)
-        startGameButton.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
+        rulesButton.addTarget(self, action: #selector(
+            rulesButtonPressed), for: .touchUpInside)
+        scoreButton.addTarget(self, action: #selector(
+            scoreButtonPressed), for: .touchUpInside)
+        startGameButton.addTarget(self, action: #selector(
+            startGameButtonPressed), for: .touchUpInside)
 
         settingsButtons()
         setConstraints()
@@ -59,7 +67,8 @@ final class StartViewController: UIViewController {
         startGameButton.setTitle("играть", for: .normal)
         startGameButton.layer.cornerRadius = 10
         startGameButton.layer.borderWidth = 2
-        startGameButton.layer.borderColor = UIColor(red: 159/255, green: 37/255, blue: 255/255, alpha: 1).cgColor
+        startGameButton.layer.borderColor = UIColor(
+            red: 159/255, green: 37/255, blue: 255/255, alpha: 1).cgColor
     }
 }
 

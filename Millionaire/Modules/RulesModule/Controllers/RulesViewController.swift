@@ -50,8 +50,10 @@ final class RulesViewController: UIViewController {
         
         self.view.backgroundColor = .black
         
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
+        backButton.addTarget(
+            self, action: #selector(backButtonPressed), for: .touchUpInside)
+        playButton.addTarget(
+            self, action: #selector(playButtonPressed), for: .touchUpInside)
         
         setConstraints()
     }

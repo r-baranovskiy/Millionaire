@@ -15,7 +15,6 @@ class CustomButton: UIButton {
     func setupButton() {
         setShadow()
         setTitleColor(.white, for: .normal)
-
         backgroundColor = .bottomColor()
         titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         titleLabel?.numberOfLines = 2
