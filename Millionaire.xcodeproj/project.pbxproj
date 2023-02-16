@@ -10,6 +10,7 @@
 		6D491E5A29983FB300C3CDE1 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E5929983FB300C3CDE1 /* ScoreModel.swift */; };
 		6D491E5C29990F7800C3CDE1 /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E5B29990F7800C3CDE1 /* UIAlert.swift */; };
 		7E1DFCEA299833AE007EBFA1 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */; };
+		800EE0D1299EAF25007966F4 /* hall-help-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 800EE0D0299EAF25007966F4 /* hall-help-sound.mp3 */; };
 		8023DC132992AA1F009E4A92 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC122992AA1F009E4A92 /* QuestionModel.swift */; };
 		8023DC152992AA8A009E4A92 /* QuestionDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */; };
 		8023DC172992AB27009E4A92 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DC162992AB27009E4A92 /* QuestionManager.swift */; };
@@ -54,6 +55,7 @@
 		6D491E5929983FB300C3CDE1 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		6D491E5B29990F7800C3CDE1 /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		7E1DFCE9299833AE007EBFA1 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		800EE0D0299EAF25007966F4 /* hall-help-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "hall-help-sound.mp3"; sourceTree = "<group>"; };
 		8023DC122992AA1F009E4A92 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		8023DC142992AA8A009E4A92 /* QuestionDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDataBase.swift; sourceTree = "<group>"; };
 		8023DC162992AB27009E4A92 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		80A5716B299668A400B4573C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				800EE0D0299EAF25007966F4 /* hall-help-sound.mp3 */,
 				807EDD77299D6D5C00310AC0 /* fitfty-fifty-sound.mp3 */,
 				807EDD75299D690800310AC0 /* help-button-sound.mp3 */,
 				807EDD73299D64E200310AC0 /* sound-answer-did-tap.mp3 */,
@@ -460,6 +463,7 @@
 				80ADA9CF2991E558002D9D84 /* Assets.xcassets in Resources */,
 				80F5B5DB299843FB00C0F86C /* StartScreen.PNG in Resources */,
 				807EDD74299D64E200310AC0 /* sound-answer-did-tap.mp3 in Resources */,
+				800EE0D1299EAF25007966F4 /* hall-help-sound.mp3 in Resources */,
 				802D4ADA2991F11C00911F7A /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

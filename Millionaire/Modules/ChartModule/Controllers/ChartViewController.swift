@@ -12,10 +12,10 @@ final class ChartViewController: UIViewController {
         return imageLogo
     }()
     
-    lazy var fiftyHelpButton = helpButton(name: "helpIcon1", action: #selector(fiftyHelpButtonAction))
-    lazy var hallHelpButton = helpButton(name: "helpIcon2", action: #selector(hallHelpButtonAction))
-    lazy var friendsHelpButton = helpButton(name: "helpIcon3", action: #selector(friendsHelpButtonAction))
-    lazy var mistakeHelpButton = helpButton(name: "helpIcon4", action: #selector(mistakeHelpButtonAction))
+    lazy var fiftyHelpButton = helpButton(name: "helpIcon21")
+    lazy var hallHelpButton = helpButton(name: "helpIcon2")
+    lazy var friendsHelpButton = helpButton(name: "helpIcon3")
+    lazy var mistakeHelpButton = helpButton(name: "helpIcon4")
     
     var helpStackOne = UIStackView()
     var helpStackTwo = UIStackView()
@@ -29,7 +29,7 @@ final class ChartViewController: UIViewController {
     lazy var view13 = setUpQuestionView(
         titleQuestion: "Вопрос 13", sumOfQuestion: "250.000 руб.")
     lazy var view12 = setUpQuestionView(
-        titleQuestion: "Вопрос 12", sumOfQuestion: "128.000 руб.")
+        titleQuestion: "Вопрос 12", sumOfQuestion: "125.000 руб.")
     lazy var view11 = setUpQuestionView(
         titleQuestion: "Вопрос 11", sumOfQuestion: "64.000 руб.")
     lazy var view10 = setUpQuestionView(
@@ -96,14 +96,26 @@ final class ChartViewController: UIViewController {
         
         self.view.addSubview(mainLogo)
         
-        helpStackOne = UIStackView(subviews: [fiftyHelpButton, hallHelpButton,], axis: .horizontal, spacing: 5, aligment: .fill, distribution: .fillEqually)
+        helpStackOne = UIStackView(
+            subviews: [fiftyHelpButton, hallHelpButton,],
+            axis: .horizontal, spacing: 5,
+            aligment: .fill, distribution: .fillEqually)
         
-        helpStackTwo = UIStackView(subviews: [friendsHelpButton, mistakeHelpButton], axis: .horizontal, spacing: 5, aligment: .fill, distribution: .fillEqually)
+        helpStackTwo = UIStackView(
+            subviews: [friendsHelpButton, mistakeHelpButton],
+            axis: .horizontal, spacing: 5,
+            aligment: .fill, distribution: .fillEqually)
         
-        helpStack = UIStackView(subviews: [helpStackOne, helpStackTwo], axis: .horizontal, spacing: 100, aligment: .fill, distribution: .fillEqually)
+        helpStack = UIStackView(
+            subviews: [helpStackOne, helpStackTwo],
+            axis: .horizontal, spacing: 100,
+            aligment: .fill, distribution: .fillEqually)
         self.view.addSubview(helpStack)
         
-        questionAndRewardStack = UIStackView(subviews: [view15, view14, view13, view12, view11, view10, view9, view8, view7, view6, view5, view4, view3, view2, view1], axis: .vertical, spacing: 7, aligment: .fill, distribution: .fillEqually)
+        questionAndRewardStack = UIStackView(
+            subviews: [view15, view14, view13, view12, view11, view10, view9,
+                       view8, view7, view6, view5, view4, view3, view2, view1],
+            axis: .vertical, spacing: 7, aligment: .fill, distribution: .fillEqually)
         self.view.addSubview(questionAndRewardStack)
     }
     
@@ -168,11 +180,10 @@ final class ChartViewController: UIViewController {
         }
     }
     
-    private func helpButton(name: String, action: Selector) -> UIButton {
+    private func helpButton(name: String) -> UIButton {
         let button = UIButton()
         button.setImage(UIImage(named: name), for: .normal)
         button.clipsToBounds = true
-        button.addTarget(self, action: action, for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
@@ -186,30 +197,6 @@ final class ChartViewController: UIViewController {
         button.addTarget(self, action: action, for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-    }
-    
-    @objc func fiftyHelpButtonAction() {
-        print("Подсказка 50/50")
-    }
-    
-    @objc func hallHelpButtonAction() {
-        print("Помощь зала")
-    }
-    
-    @objc func friendsHelpButtonAction() {
-        print("Звонок другу")
-    }
-    
-    @objc func mistakeHelpButtonAction() {
-        print("Право на ошибку")
-    }
-    
-    @objc func takeMoneyAction() {
-        print("Забрать деньги")
-    }
-    
-    @objc func goAheadAction() {
-        print("Далее")
     }
     
     // MARK: - Сonstraints

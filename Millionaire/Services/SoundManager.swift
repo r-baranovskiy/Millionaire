@@ -6,6 +6,9 @@ final class SoundManager {
     
     static let shared = SoundManager()
     
+    var soundDuration: TimeInterval?
+    var helpSoundDuration: TimeInterval?
+    
     // MARK: - Private
     
     enum SoundStatus {
@@ -25,6 +28,7 @@ final class SoundManager {
     enum HelpSounds: String {
         case possibleErrorSound = "help-button-sound"
         case fiftyHelpSound = "fitfty-fifty-sound"
+        case hallHelpSound = "hall-help-sound"
     }
     
     private var player: AVAudioPlayer?
@@ -32,8 +36,9 @@ final class SoundManager {
     private var playStatus: SoundStatus = .stopped
     
     func playHelpSound(helpSound: HelpSounds) {
-        guard let player = player else { return }
-        player.pause()
+        if playStatus == .playing {
+            player?.pause()
+        }
         
         guard let url = Bundle.main.url(
             forResource: helpSound.rawValue, withExtension: "mp3") else { return }
@@ -46,10 +51,13 @@ final class SoundManager {
                 contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let helpPlayer = helpPlayer else { return }
             helpPlayer.play()
+            helpSoundDuration = helpPlayer.duration
             
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: helpSoundDuration ?? 2,
+                                 repeats: false) { _ in
                 helpPlayer.stop()
-                player.play()
+                self.player?.play()
+                self.playStatus = .playing
             }
         } catch let error {
             print(error.localizedDescription)
@@ -74,7 +82,7 @@ final class SoundManager {
             guard let player = player else { return }
             player.prepareToPlay()
             player.play()
-            
+            soundDuration = player.duration
             playStatus = .playing
         } catch let error {
             print(error.localizedDescription)

@@ -60,10 +60,14 @@ class QuestionViewController: UIViewController {
         return button
     }
     
-    private lazy var fiftyButton = helpButton(name: "helpIcon1", action: #selector(fiftyButtonAction))
-    private lazy var hallHelpButton = helpButton(name: "helpIcon2", action: #selector(hallHelpButtonAction))
-    private lazy var possibleErrorButton = helpButton(name: "helpIcon3", action: #selector(possibleErrorButtonAction))
-    private lazy var noticeButton = helpButton(name: "helpIcon4", action: #selector(noticeButtonAction))
+    private lazy var fiftyButton = helpButton(
+        name: "helpIcon1", action: #selector(fiftyButtonAction))
+    private lazy var hallHelpButton = helpButton(
+        name: "helpIcon2", action: #selector(hallHelpButtonAction))
+    private lazy var possibleErrorButton = helpButton(
+        name: "helpIcon3", action: #selector(possibleErrorButtonAction))
+    private lazy var noticeButton = helpButton(
+        name: "helpIcon4", action: #selector(noticeButtonAction))
     
     // MARK: - viewDidLoad
     
@@ -77,15 +81,9 @@ class QuestionViewController: UIViewController {
     }
     
     private func startGame() {
-        var delay = 0
-        if questionManager.isTheFirstGame {
-            delay = 5
-        } else {
-            delay = 0
-        }
-        
         soundManager.playSound(sound: .startGame)
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(delay), repeats: false) { _ in
+        let time = (questionManager.isTheFirstGame ? soundManager.soundDuration : 0) ?? 5
+        Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
             self.soundManager.playSound(sound: .startGame)
             self.setButtontargets()
             self.startTimer()
@@ -128,7 +126,9 @@ class QuestionViewController: UIViewController {
         gameTimer.invalidate()
         currentTitleAnswerButton = button.currentTitle
         soundManager.playSound(sound: .asnwerDidSelected)
-        (fiftyButton.isEnabled, hallHelpButton.isEnabled, possibleErrorButton.isEnabled, noticeButton.isEnabled) = (false, false, false, false)
+        (fiftyButton.isEnabled, hallHelpButton.isEnabled,
+         possibleErrorButton.isEnabled, noticeButton.isEnabled) = (
+            false, false, false, false)
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
             self.checkAnswer(button: button)
         }
@@ -211,13 +211,16 @@ class QuestionViewController: UIViewController {
     
     private func handleButtons(){
         if possibleError {
-            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
+            (aButton.isEnabled, bButton.isEnabled,
+             cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
         } else if isRepeatedAnswerAllowed {
-            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (true, true, true, true)
+            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled,
+             dButton.isEnabled) = (true, true, true, true)
             isRepeatedAnswerAllowed = false
             answeredSecondTime = false
         } else {
-            (aButton.isEnabled, bButton.isEnabled, cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
+            (aButton.isEnabled, bButton.isEnabled,
+             cButton.isEnabled, dButton.isEnabled) = (false, false, false, false)
             answeredSecondTime = true
         }
     }
@@ -253,6 +256,7 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func hallHelpButtonAction() {
+        soundManager.playHelpSound(helpSound: .hallHelpSound)
         questionManager.userHelp(typeOfHelp: .hall)
         let tagOfRightButton = questionManager.checkAnswer()
         
@@ -265,7 +269,6 @@ class QuestionViewController: UIViewController {
         } else if tagOfRightButton == dButton.tag {
             dButton.buttonUnpressed()
         }
-        
         updateStateButtons()
     }
     
@@ -283,7 +286,9 @@ class QuestionViewController: UIViewController {
     
     @objc func noticeButtonAction() {
         
-        let alert = UIAlertController(title: "Забрать деньги?", message: "Вы уверены, что хотите забрать деньги?", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "Забрать деньги?",
+            message: "Вы уверены, что хотите забрать деньги?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Да", style: .default) { _ in
             QuestionManager.shared.safeMoney()
             self.questionManager.newGame()
@@ -336,8 +341,8 @@ extension QuestionViewController {
             mainLogo.widthAnchor.constraint(equalToConstant: 158),
             mainLogo.heightAnchor.constraint(equalToConstant: 158),
         ])
-        let time = questionManager.isTheFirstGame ? 4 : 0
-        UIView.animate(withDuration: TimeInterval(time)) {
+        let time = (questionManager.isTheFirstGame ? soundManager.soundDuration : 0) ?? 5
+        UIView.animate(withDuration: time) {
             self.mainLogo.alpha = 1
         }
     }
