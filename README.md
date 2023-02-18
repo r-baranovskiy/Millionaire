@@ -30,7 +30,7 @@
 
 ## Интерфейс
 
-![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/dev/ReadmeResources/interface.gif?raw=true)
+![Millionaire](https://github.com/r-baranovskiy/Millionaire/blob/main/ReadmeResources/interface.gif)
 
 
 
