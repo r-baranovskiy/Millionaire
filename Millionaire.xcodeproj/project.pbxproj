@@ -20,6 +20,7 @@
 		807EDD74299D64E200310AC0 /* sound-answer-did-tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 807EDD73299D64E200310AC0 /* sound-answer-did-tap.mp3 */; };
 		807EDD76299D690800310AC0 /* help-button-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 807EDD75299D690800310AC0 /* help-button-sound.mp3 */; };
 		807EDD78299D6D5C00310AC0 /* fitfty-fifty-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 807EDD77299D6D5C00310AC0 /* fitfty-fifty-sound.mp3 */; };
+		8080CD8329A1595600D2393B /* interface.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8080CD8229A1595600D2393B /* interface.gif */; };
 		80A571682996634100B4573C /* UI Bugs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A571672996634100B4573C /* UI Bugs.swift */; };
 		80A5716A2996661700B4573C /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A571692996661700B4573C /* Tasks.swift */; };
 		80A57172299669A500B4573C /* sound-question-module-fail-answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80A5716D299669A500B4573C /* sound-question-module-fail-answer.mp3 */; };
@@ -65,6 +66,7 @@
 		807EDD73299D64E200310AC0 /* sound-answer-did-tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-answer-did-tap.mp3"; sourceTree = "<group>"; };
 		807EDD75299D690800310AC0 /* help-button-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "help-button-sound.mp3"; sourceTree = "<group>"; };
 		807EDD77299D6D5C00310AC0 /* fitfty-fifty-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fitfty-fifty-sound.mp3"; sourceTree = "<group>"; };
+		8080CD8229A1595600D2393B /* interface.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = interface.gif; sourceTree = "<group>"; };
 		80A571672996634100B4573C /* UI Bugs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Bugs.swift"; sourceTree = "<group>"; };
 		80A571692996661700B4573C /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		80A5716D299669A500B4573C /* sound-question-module-fail-answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-question-module-fail-answer.mp3"; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 		80F5B5D92998429200C0F86C /* ReadmeResources */ = {
 			isa = PBXGroup;
 			children = (
+				8080CD8229A1595600D2393B /* interface.gif */,
 				80F5B5DA299843FB00C0F86C /* StartScreen.PNG */,
 				80F5B5DC2998442000C0F86C /* QuestionScreen.PNG */,
 			);
@@ -452,6 +455,7 @@
 				802D4ADB2991F11C00911F7A /* Poppins-SemiBold.ttf in Resources */,
 				80F5B5DD2998442000C0F86C /* QuestionScreen.PNG in Resources */,
 				80A57175299669A500B4573C /* sound-question-module-right-answer.mp3 in Resources */,
+				8080CD8329A1595600D2393B /* interface.gif in Resources */,
 				807EDD76299D690800310AC0 /* help-button-sound.mp3 in Resources */,
 				80A57174299669A500B4573C /* sound-question-module-waiting.mp3 in Resources */,
 				80A57172299669A500B4573C /* sound-question-module-fail-answer.mp3 in Resources */,
